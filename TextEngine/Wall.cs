@@ -1,5 +1,5 @@
 ﻿/*
- TextEngine: Item.cs
+ TextEngine: Wall.cs
  Copyright (C) 2020 Kyle Givler
  
  This program is free software: you can redistribute it and/or modify
@@ -17,30 +17,21 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TextEngine
 {
     /// <summary>
-    /// Represents an item
+    /// Represents a wall
     /// </summary>
-    public class Item
+    public class Wall : MapSite
     {
-        /// <value>Allows the item to be added to an Inventory</value>
-        public bool Obtainable { get; set; }
-        /// <value>If true the object is visible when looking</value>
-        public bool Visible { get; set; }
-        /// <value>The name of the item</value>
         public string Name { get; set; }
-        /// <value>The description to be shown for the item</value>
-        public string Description { get; set; }
-        /// <value>The Quantity of the item</value>
-        public int Quantity { get; set; }
+        public Wall(string name = "wall") => Name = name;
 
-        public virtual void Use()
+        public override void Enter()
         {
             throw new NotImplementedException();
         }
+
     }
 }
