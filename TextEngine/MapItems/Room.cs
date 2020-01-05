@@ -41,6 +41,7 @@ namespace TextEngine
             ShortName = shortName;
             Description = desc;
             LookDescription = lookDesc;
+            Visisted = false;
             Inventory = new Inventory();
             sides = new Dictionary<Direction, MapSite>();
         }
@@ -49,6 +50,7 @@ namespace TextEngine
         public override void Enter(Character character, Direction dir)
         {
             character.Location = this;
+            Visisted = true;
             throw new NotImplementedException();
         }
         /// <summary>
