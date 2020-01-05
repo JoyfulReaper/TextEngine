@@ -14,7 +14,12 @@ namespace TextEngine
         public string LookDescription { get; set; }
         public bool Visisted { get; set; }
 
-        public Room(string name) => Name = name;
+        public Room(string name)
+        {
+            Name = name;
+            inventory = new Inventory();
+            sides = new Dictionary<Direction, MapSite>();
+        }
         public override void Enter()
         {
             throw new NotImplementedException();

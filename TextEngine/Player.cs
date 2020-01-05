@@ -4,8 +4,7 @@ using System.Text;
 
 namespace TextEngine
 {
-    public abstract class MapSite
+    public class Player : Person
     {
-        public abstract void Enter();
     }
 }
