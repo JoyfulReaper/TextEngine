@@ -64,13 +64,12 @@ namespace TextEngine
                    Obtainable == item.Obtainable &&
                    Visible == item.Visible &&
                    Name == item.Name &&
-                   Description == item.Description &&
-                   Quantity == item.Quantity;
+                   Description == item.Description;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Obtainable, Visible, Name, Description, Quantity);
+            return HashCode.Combine(Obtainable, Visible, Name, Description);
         }
     }
 }
