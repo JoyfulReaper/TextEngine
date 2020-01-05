@@ -12,7 +12,8 @@ namespace TextEngine
         {
             Player player = new Player("Kyle");
             TextEngine.Player = player;
-            Console.WriteLine("Player: {0}", TextEngine.Player.Name);
+            Console.WriteLine("Player (engine): {0} Player (local): {1}", TextEngine.Player.ToString(), player.ToString());
+            Console.WriteLine(player == TextEngine.Player);
 
             Room r1 = new Room("New Room!");
             Room r2 = new Room("Another Room", "Room2", "It smells weird", "I think something might have died");
@@ -56,6 +57,14 @@ namespace TextEngine
 
             if (TextEngine.RoomExists(r2))
                 Console.WriteLine("r2 is there!");
+
+            
+
+            if (TextEngine.Player.Inventory.HasItem("Phone"))
+                Console.WriteLine("You have {0} phone.", i1.Quantity);
+
+            TextEngine.Player.Move(r1);
+
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);
             TextEngine.StartGame();

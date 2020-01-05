@@ -18,7 +18,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TextEngine
 {
@@ -43,7 +42,10 @@ namespace TextEngine
         {
             items = new List<Item>();
             Capacity = capacity;
+            Count = 0;
         }
+
+        ////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Adds an item to the inventory
@@ -72,18 +74,35 @@ namespace TextEngine
 
         public bool RemoveItem(Item item, int quantity = 1)
         {
-            throw new NotImplementedException();
+            if (!items.Contains(item) || quantity > item.Quantity)
+                return false;
 
-            if(items.Contains(item))
-            {
-                if (quantity > 0)
-                    return false;
-            }
+            item.Quantity -= quantity;
+
+            if (item.Quantity == 0 && !items.Remove(item))
+                return false;
+
+            if (items.Contains(item) && item.Quantity <= 0)
+                throw new Exception("Something went wrong in RemoveItem(Item item, int quantity");
+
+            return true;
         }
 
-        public bool HasItem(Item item)
+        public bool RemoveItem(String itemName, int quantity = 1)
         {
-            throw new NotImplementedException();
+            Item item = items.Find(x => x.Name.Equals(itemName));
+            if (item == null)
+                return false;
+
+
+            return RemoveItem(item);
+        }
+
+        public bool HasItem(Item item) => items.Contains(item);
+
+        public bool HasItem(String item)
+        {
+            return items.Find(x => x.Name.Equals(item)).Equals(null) ? false : true;
         }
 
         public Item GetItem(string name)

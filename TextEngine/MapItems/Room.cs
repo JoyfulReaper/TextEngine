@@ -49,7 +49,6 @@ namespace TextEngine
 
         public override void Enter(Character character, Direction dir)
         {
-            character.Location = this;
             Visisted = true;
             throw new NotImplementedException();
         }

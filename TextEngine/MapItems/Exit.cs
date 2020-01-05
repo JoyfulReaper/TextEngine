@@ -42,11 +42,11 @@ namespace TextEngine
         public bool Visible { get; set; }
 
         /// <summary>
-        /// The Mapsite on the other side of the exit
+        /// The Room on the other side of the exit
         /// </summary>
-        public MapSite ToRoom { get; set; }
+        public Room ToRoom { get; set; }
 
-        public Exit(string name, MapSite toRoom, bool locked, bool visible)
+        public Exit(string name, Room toRoom, bool locked, bool visible)
         {
             Name = name;
             ToRoom = toRoom;
@@ -62,7 +62,11 @@ namespace TextEngine
 
         public override void Enter(Character character, Direction going)
         {
-            throw new NotImplementedException();
+            if (!Locked)
+                character.Move(ToRoom);
+            else
+                TextEngine.AddMessage("You try to go though the " + Name + ", but it is locked.");
+
         }
 
     }

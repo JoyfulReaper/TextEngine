@@ -35,13 +35,12 @@ namespace TextEngine
         /// <summary>
         /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
         /// </summary>
-        public int Health
+        public int Health 
         {
-            get => Health;
+            get => health;
             set
             {
-                if (value < 0)
-                    Health = 0;
+                health = value < 0 ? 0 : value;
             }
         }
 
@@ -50,9 +49,15 @@ namespace TextEngine
         /// </summary>
         public decimal Money { get; set; }
 
-        public MapSite Location { get; set; }
+        public Room Location { get; private set; }
 
-        public Inventory Inventory { get; }
+        public Room PreviousLocation { get; private set; }
+
+        public Inventory Inventory { get;}
+
+        private int health;
+
+
 
         public Character(string name = "Character", int health = 100, decimal money = 0)
         {
@@ -66,5 +71,17 @@ namespace TextEngine
         /// </summary>
         /// <returns>true if health > 0 other wise false;</returns>
         public virtual bool IsAlive() => Health > 0;
+
+        public virtual bool Move(Room room)
+        {
+            Location = room;
+            PreviousLocation = Location;
+            return true;
+        }
+
+        public virtual string ToString()
+        {
+            return "Name: " + Name + " Health: " + Health + " Money: " + Money;
+        }
     }
 }
