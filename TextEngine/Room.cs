@@ -21,15 +21,19 @@ using System.Collections.Generic;
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents a room with 6 sides, one for each Direction
+    /// </summary>
     public class Room : MapSite
     {
-        private Inventory inventory;
-        private Dictionary<Direction,MapSite> sides;
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string Description { get; set; }
         public string LookDescription { get; set; }
         public bool Visisted { get; set; }
+
+        private Inventory inventory;
+        private Dictionary<Direction, MapSite> sides;
 
         public Room(string name, string shortName, string desc, string lookDesc)
         {
@@ -46,7 +50,11 @@ namespace TextEngine
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Get a side of the room
+        /// </summary>
+        /// <param name="dir">Direction of side to retreive</param>
+        /// <returns>MapSite on the side of the room indicated</returns>
         public MapSite GetSide(Direction dir)
         {
             return sides[dir];

@@ -21,7 +21,7 @@ using System;
 
 namespace TextEngine
 {
-    public class Player : Person
+    public class Player : Character
     {
         public Player(string name = "Player", int health = 100, decimal money = 0) : base(name, health, money) { }
     }

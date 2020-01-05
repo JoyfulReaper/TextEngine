@@ -1,5 +1,5 @@
 ﻿/*
- TextEngine: Person.cs
+ TextEngine: Character.cs
  Copyright (C) 2020 Kyle Givler
  
  This program is free software: you can redistribute it and/or modify
@@ -20,21 +20,49 @@ using System;
 
 namespace TextEngine
 {
-    public abstract class Person
+    public abstract class Character
     {
+        /// <summary>
+        /// Character's Name
+        /// </summary>
         public string Name { get; set; }
-        public string Description { get; set; }
-        public int Health { get; set; }
-        public decimal Money { get; set; }
-        private Inventory inventory;
 
-        public Person(string name = "Person", int health = 100, decimal money = 0)
+        /// <summary>
+        /// Characters Description
+        /// </summary> 
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
+        /// </summary>
+        public int Health
+        {
+            get => Health;
+            set
+            {
+                if (value < 0)
+                    Health = 0;
+            }
+        }
+
+        /// <summary>
+        /// The amount of local currence that the character has
+        /// </summary>
+        public decimal Money { get; set; }
+
+        public Inventory inventory { get; }
+
+        public Character(string name = "Character", int health = 100, decimal money = 0)
         {
             Name = name;
             Health = health;
             Money = money;
+            inventory = new Inventory();
         }
+        /// <summary>
+        /// Check if the chacater is alive
+        /// </summary>
+        /// <returns>true if health > 0 other wise false;</returns>
         public virtual bool IsAlive() => Health > 0;
-    
     }
 }

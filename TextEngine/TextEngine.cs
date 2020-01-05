@@ -22,27 +22,57 @@ using System.Text;
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represent the cardnial directions
+    /// </summary>
     public enum Direction { North, South, East, West, Up, Down };
 
     public static class TextEngine
     {
-        public static bool GameOver { get; private set; } = false; // The game has ended
-        public static bool GameStarted { get; private set; } = true; // The game has begun
-        public static Player player; // Active character
-        public static Room StartRoom { get; set; } // Starting location
+        /// <value>
+        /// Flag indicating if the game has ended
+        /// </value>
+        public static bool GameOver { get; private set; } = false;
 
-        private static List<MapSite> rooms; // List of rooms
+        /// <summary>
+        /// Flag indicating if the game has started
+        /// </summary>
+        public static bool GameStarted { get; private set; } = true;
+
+        /// <summary>
+        /// The active playable character
+        /// </summary>
+        public static Player player;
+
+        /// <summary>
+        /// The room in which the game should begin
+        /// </summary>
+        public static Room StartRoom { get; set; }
+
+        /// <summary>
+        /// List containing all rooms on the map
+        /// </summary>
+        private static List<MapSite> map = new List<MapSite>();
         
-
+        /// <summary>
+        /// Add a room to the map
+        /// </summary>
+        /// <param name="room">The room to add</param>
+        /// <returns>true on success, false on failure</returns>
         public static bool AddRoom(Room room)
         {
             if (RoomExists(room))
                 return false;
 
-            rooms.Add(room);
+            map.Add(room);
             return true;
         }
 
-        public static bool RoomExists(Room room) => rooms.Contains(room);
+        /// <summary>
+        /// Check if a room exists
+        /// </summary>
+        /// <param name="room">Room to check for</param>
+        /// <returns>true on success, false on failure</returns>
+        public static bool RoomExists(Room room) => map.Contains(room);
     }
 }

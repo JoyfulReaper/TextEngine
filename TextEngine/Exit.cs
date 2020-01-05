@@ -21,15 +21,49 @@ using System;
 
 namespace TextEngine
 {
-    class Exit : MapSite
+    /// <summary>
+    /// Represents and exit from one MapSite to another
+    /// </summary>
+    public class Exit : MapSite
     {
-        public string Name { get; set; } = "door";
-        public bool IsLocked { get; set; } = false;
-        public bool IsVisible { get; set; } = true;
-        private MapSite toRoom;
+        /// <summary>
+        /// The name of the exit
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Weather or not the exit is locked
+        /// </summary>
+        public bool Locked { get; set; }
+
+        /// <summary>
+        /// Weather or not the exit is visible 
+        /// </summary>
+        public bool Visible { get; set; }
+
+        /// <summary>
+        /// The Mapsite on the other side of the exit
+        /// </summary>
+        public MapSite ToRoom { get; set; }
+
+        public Exit(string name, MapSite toRoom, bool locked, bool visible)
+        {
+            Name = name;
+            ToRoom = toRoom;
+            Locked = locked;
+            Visible = visible;
+        }
+
+        /// <summary>
+        /// Create an exit
+        /// </summary>
+        /// <param name="toRoom">The MapSite on the other side of the exit</param>
+        public Exit(MapSite toRoom) : this("door", null, false, true) { }
+
         public override void Enter()
         {
             throw new NotImplementedException();
         }
+
     }
 }

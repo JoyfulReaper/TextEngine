@@ -21,7 +21,7 @@ using System;
 
 namespace TextEngine
 {
-    class Floor : MapSite
+    public class Floor : MapSite
     {
         public string Name { get; set; }
         public Floor(string name = "floor") => Name = name;

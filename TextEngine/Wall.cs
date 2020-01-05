@@ -25,7 +25,15 @@ namespace TextEngine
     /// </summary>
     public class Wall : MapSite
     {
+        /// <summary>
+        /// The name to be shown when refering to this wall
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Wall Constructor
+        /// </summary>
+        /// <param name="name">name of the wall</param>
         public Wall(string name = "wall") => Name = name;
 
         public override void Enter()

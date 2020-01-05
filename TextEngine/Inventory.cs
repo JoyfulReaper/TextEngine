@@ -22,24 +22,50 @@ using System.Text;
 
 namespace TextEngine
 {
-    class Inventory
+    public class Inventory
     {
-        public int Capacity {get; private set;}
+        /// <summary>
+        /// The total number of items the inventory can hold
+        /// </summary>
+        public int Capacity { get; set; }
+
+        /// <summary>
+        /// The current number of items in the inventory
+        /// </summary>
         public int Count { get; private set; }
+
+        /// <summary>
+        /// A list containing all of the items in the inventory
+        /// </summary>
         private List<Item> items;
 
+        public Inventory(int capacity = 1)
+        {
+            items = new List<Item>();
+            Capacity = capacity;
+        }
+
+        /// <summary>
+        /// Adds an item to the inventory
+        /// </summary>
+        /// <param name="item">The item to add</param>
+        /// <param name="quantity">the number of the item to add</param>
+        /// <returns>true on success, false on failure</returns>
         public bool AddItem(Item item, int quantity = 1)
         {
             if (Count + quantity > Capacity)
                 return false;
 
+            if (!item.Obtainable)
+                return false;
+
             if(items.Contains(item))
             {
-                Console.WriteLine("DEBUG: Looking for existing item");
-                items.Find(x => x.Name.Contains(item.Name)).Quantity += quantity;
+                item.Quantity += quantity;
             }
 
             items.Add(item);
+            Count++;
 
             return true;
         }
@@ -47,6 +73,12 @@ namespace TextEngine
         public bool RemoveItem(Item item, int quantity = 1)
         {
             throw new NotImplementedException();
+
+            if(items.Contains(item))
+            {
+                if (quantity > 0)
+                    return false;
+            }
         }
 
         public bool HasItem(Item item)
@@ -56,7 +88,10 @@ namespace TextEngine
 
         public Item GetItem(string name)
         {
-            throw new NotImplementedException();
+            if (items.Find(x => x.Name.Equals(name)).Equals(null))
+                return null;
+
+            return items.Find(x => x.Name.Equals(name));
         }
 
         

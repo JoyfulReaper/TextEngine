@@ -38,9 +38,39 @@ namespace TextEngine
         /// <value>The Quantity of the item</value>
         public int Quantity { get; set; }
 
+        public Item(string name, string desc, bool visible, bool obtainable, int quantity)
+        {
+            Name = name; 
+            Description = desc;
+            Visible = visible;
+            Obtainable = obtainable;
+
+            if (quantity < 1)
+                throw new ArgumentOutOfRangeException("Quantity must be > 0");
+            else
+                Quantity = quantity;
+        }
+        public Item(string name, string desc, bool visible, bool obtainable) : this(name, desc, true, true, 1) { }
+        public Item(string name) : this(name, "", true, true) { }
+
         public virtual void Use()
         {
             throw new NotImplementedException();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Item item &&
+                   Obtainable == item.Obtainable &&
+                   Visible == item.Visible &&
+                   Name == item.Name &&
+                   Description == item.Description &&
+                   Quantity == item.Quantity;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Obtainable, Visible, Name, Description, Quantity);
         }
     }
 }
