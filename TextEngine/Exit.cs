@@ -60,7 +60,7 @@ namespace TextEngine
         /// <param name="toRoom">The MapSite on the other side of the exit</param>
         public Exit(MapSite toRoom) : this("door", null, false, true) { }
 
-        public override void Enter()
+        public override void Enter(Character character, Direction going)
         {
             throw new NotImplementedException();
         }

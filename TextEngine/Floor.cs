@@ -26,9 +26,9 @@ namespace TextEngine
         public string Name { get; set; }
         public Floor(string name = "floor") => Name = name;
 
-        public override void Enter()
+        public override void Enter(Character character, Direction going)
         {
-            throw new NotImplementedException();
+            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", but you can't get through the " + Name);
         }
     }
 }

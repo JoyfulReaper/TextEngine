@@ -50,14 +50,16 @@ namespace TextEngine
         /// </summary>
         public decimal Money { get; set; }
 
-        public Inventory inventory { get; }
+        public MapSite Location { get; set; }
+
+        public Inventory Inventory { get; }
 
         public Character(string name = "Character", int health = 100, decimal money = 0)
         {
             Name = name;
             Health = health;
             Money = money;
-            inventory = new Inventory();
+            Inventory = new Inventory();
         }
         /// <summary>
         /// Check if the chacater is alive

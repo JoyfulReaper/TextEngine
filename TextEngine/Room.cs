@@ -32,7 +32,7 @@ namespace TextEngine
         public string LookDescription { get; set; }
         public bool Visisted { get; set; }
 
-        private Inventory inventory;
+        public Inventory Inventory { get; }
         private Dictionary<Direction, MapSite> sides;
 
         public Room(string name, string shortName, string desc, string lookDesc)
@@ -41,13 +41,14 @@ namespace TextEngine
             ShortName = shortName;
             Description = desc;
             LookDescription = lookDesc;
-            inventory = new Inventory();
+            Inventory = new Inventory();
             sides = new Dictionary<Direction, MapSite>();
         }
         public Room(string name) : this(name, "", "", "") { }
 
-        public override void Enter()
+        public override void Enter(Character character, Direction dir)
         {
+            character.Location = this;
             throw new NotImplementedException();
         }
         /// <summary>

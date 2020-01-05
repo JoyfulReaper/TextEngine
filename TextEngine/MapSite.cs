@@ -22,6 +22,6 @@ namespace TextEngine
 {
     public abstract class MapSite
     {
-        public abstract void Enter();
+        public abstract void Enter(Character character, Direction going);
     }
 }

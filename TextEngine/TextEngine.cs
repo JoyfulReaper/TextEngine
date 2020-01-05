@@ -42,7 +42,7 @@ namespace TextEngine
         /// <summary>
         /// The active playable character
         /// </summary>
-        public static Player player;
+        public static Player Player;
 
         /// <summary>
         /// The room in which the game should begin
@@ -53,7 +53,46 @@ namespace TextEngine
         /// List containing all rooms on the map
         /// </summary>
         private static List<MapSite> map = new List<MapSite>();
-        
+
+        private static Queue<string> messages = new Queue<string>();
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static void StartGame()
+        {
+            GameOver = false;
+            GameStarted = true;
+        }
+
+        public static string DirectionName(Direction dir, bool shortName = false)
+        {
+            switch (dir)
+            {
+                case Direction.North:
+                    if (shortName)
+                        return "N";
+                    return "North";
+                case Direction.East:
+                    if (shortName)
+                        return "E";
+                    return "East";
+                case Direction.West:
+                    if (shortName)
+                        return "W";
+                    return "West";
+                case Direction.South:
+                    if (shortName)
+                        return "S";
+                    return "South";
+                case Direction.Up:
+                    return "Up";
+                case Direction.Down:
+                    return "Down";
+                default:
+                    return "Unknown Direction";
+            }
+        }
+
         /// <summary>
         /// Add a room to the map
         /// </summary>
@@ -74,5 +113,19 @@ namespace TextEngine
         /// <param name="room">Room to check for</param>
         /// <returns>true on success, false on failure</returns>
         public static bool RoomExists(Room room) => map.Contains(room);
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public static void AddMessage(string message) => messages.Enqueue(message);
+
+        public static bool HasMessage() => messages.Count > 0;
+
+        public static string GetMessage() => messages.Dequeue();
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
+
     }
 }
