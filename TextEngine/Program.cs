@@ -54,20 +54,20 @@ namespace TextEngine
 
             Item i1 = new Item("Phone", "It's an Android", true, true);
 
-            if (player.Inventory.AddItem(i1))
-                Console.WriteLine("Added {0} to player", i1.Name);
+            player.Inventory.AddItem(i1);
+            Console.WriteLine("Added {0} to player", i1.Name);
 
             if (TextEngine.Player.Inventory.HasItem("Phone"))
                 Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
-            if (r1.Inventory.AddItem(i1))
-                Console.WriteLine("Added {0} to room", i1.Name);
+            r1.Inventory.AddItem(i1);
+            Console.WriteLine("Added {0} to room", i1.Name);
 
             if (TextEngine.Player.Inventory.HasItem("Phone"))
                 Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
-            if (player.Inventory.AddItem(i1, 1))
-                Console.WriteLine("Added {0}", i1.Name);
+            player.Inventory.AddItem(i1, 1);
+            Console.WriteLine("Added {0}", i1.Name);
 
             TextEngine.Player.Inventory.AddItem(i1);
 

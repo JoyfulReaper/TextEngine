@@ -65,10 +65,13 @@ namespace TextEngine
         /// <param name="item">The item to add</param>
         /// <param name="quantity">the number of the item to add</param>
         /// <returns>true on success, false on failure</returns>
-        public bool AddItem(Item item, int quantity = 1)
+        public void AddItem(Item item, int quantity = 1)
         {
-            if (Count + quantity > Capacity || !item.Obtainable)
-                return false;
+            if (Count + quantity > Capacity)
+                throw new InvalidQuantityException("Inventory can not hold that many itmes");
+
+            if (!item.Obtainable)
+                throw new InvalidOperationException(item.Name + " is not obtainable!");
 
             if (items.ContainsKey(item))
                 items[item] += quantity;
@@ -77,8 +80,6 @@ namespace TextEngine
                 items.Add(item, quantity);
 
             Count += quantity;
-
-            return true;
         }
 
         public bool AddItem(String item, int quantity = 1)
