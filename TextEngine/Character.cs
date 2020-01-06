@@ -72,11 +72,10 @@ namespace TextEngine
         /// <returns>true if health > 0 other wise false;</returns>
         public virtual bool IsAlive() => Health > 0;
 
-        public virtual bool Move(Room room)
+        public virtual void Move(Room room)
         {
             Location = room;
             PreviousLocation = Location;
-            return true;
         }
 
         public virtual string ToString()

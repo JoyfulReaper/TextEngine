@@ -27,7 +27,17 @@ namespace TextEngine
         /// <summary>
         /// The total number of items the inventory can hold
         /// </summary>
-        public int Capacity { get; set; }
+        public int Capacity 
+        {
+            get => capacity;
+            set 
+            {
+                if (value < 0)
+                    throw new InvalidQuantityException("Inventory Capacity must be >= 0");
+                else
+                    capacity = value;
+            }
+        }
 
         /// <summary>
         /// The current number of items in the inventory
@@ -38,6 +48,7 @@ namespace TextEngine
         /// A list containing all of the items in the inventory
         /// </summary>
         private Dictionary<Item, int> items;
+        private int capacity;
 
         public Inventory(int capacity = 1)
         {
@@ -72,38 +83,45 @@ namespace TextEngine
 
         public bool AddItem(String item, int quantity = 1)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Later, when we can load items from files, I promise!");
         }
 
-        public bool RemoveItem(Item item, int quantity = 1)
+        public void RemoveItem(Item item, int quantity = 1)
         {
-            if (!items.ContainsKey(item) || quantity > items[item])
-                return false;
+            if (!items.ContainsKey(item))
+                throw new ArgumentException("Iventory does not contain " + item.Name);
 
-            items[item] -= quantity;
+            if (quantity > items[item])
+                throw new ArgumentException("Inventory does not have " + quantity + " items. It has: " + items[item]);
+
+            items[item] -= quantity; // The magic happens here!
 
             if (items[item] == 0 && !items.Remove(item))
-                return false;
+                throw new DebugException(item.Name + " quantity is 0, but we can't remove it!");
 
             if (items.ContainsKey(item) && items[item] <= 0)
-                throw new Exception("Something went wrong in RemoveItem(Item item, int quantity");
-
-            return true;
+                throw new DebugException(item.Name + " quantity is 0, but it wasn't removed!");
         }
 
-        public bool RemoveItem(String itemName, int quantity = 1)
+        public void RemoveItem(String itemName, int quantity = 1)
         {
             if (!HasItem(itemName))
-                return false;
+                throw new ArgumentException("Iventory does not contain " + itemName);
 
-            return RemoveItem(itemName);
+            RemoveItem(GetItem(itemName));
         }
 
         public bool HasItem(Item item) => items.ContainsKey(item);
 
         public bool HasItem(String itemName) => items.Keys.Any(key => key.Name == itemName);
 
-        public Item GetItem(string name) => items.Keys.First(key => key.Name == name);
+        public Item GetItem(string name)
+        {
+            if (!HasItem(name))
+                throw new ArgumentException(name + " is not in the inventory");
+
+            return items.Keys.First(key => key.Name == name);
+        }
 
         public int ItemQuantity(Item item) => items[item];
 

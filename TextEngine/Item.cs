@@ -46,6 +46,7 @@ namespace TextEngine
             Visible = visible;
             Obtainable = obtainable;
         }
+        public Item(string name, string des) : this(name, des, true, true) { }
         public Item(string name) : this(name, "", true, true) { }
 
         public virtual void Use()
@@ -65,6 +66,11 @@ namespace TextEngine
         public override int GetHashCode()
         {
             return HashCode.Combine(Obtainable, Visible, Name, Description);
+        }
+
+        public virtual string ToString()
+        {
+            return "Name: " + Name + " Description: " + Description + " Visible: " + Visible + " Obtainable: " + Obtainable;
         }
     }
 }

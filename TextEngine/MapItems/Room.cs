@@ -50,6 +50,7 @@ namespace TextEngine
         public override void Enter(Character character, Direction dir)
         {
             Visisted = true;
+            TextEngine.Player.Move(this);
             throw new NotImplementedException();
         }
         /// <summary>

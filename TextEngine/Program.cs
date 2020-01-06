@@ -74,8 +74,7 @@ namespace TextEngine
             if (TextEngine.Player.Inventory.HasItem("Phone"))
                 Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
-            TextEngine.Player.Move(r1);
-
+            Console.WriteLine(i1.ToString());
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);
             TextEngine.StartRoom = r1;
