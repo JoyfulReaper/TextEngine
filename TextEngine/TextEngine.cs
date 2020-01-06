@@ -16,38 +16,45 @@
  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System;
 
 namespace TextEngine
 {
     /// <summary>
-    /// Represent the cardnial directions
+    /// Represent the directions the player can move in
     /// </summary>
     public enum Direction { North, South, East, West, Up, Down };
 
+    /// <summary>
+    /// Static class for keeping track of important information
+    /// </summary>
     public static class TextEngine
     {
         /// <value>
         /// Flag indicating if the game has ended
         /// </value>
-        public static bool GameOver { get; private set; } = false;
-
-        /// <summary>
-        /// Flag indicating if the game has started
-        /// </summary>
-        public static bool GameStarted { get; private set; } = true;
+        public static bool GameOver { get; private set; } = true;
 
         /// <summary>
         /// The active playable character
         /// </summary>
-        public static Player Player;
+        public static Player Player { get; set; }
 
         /// <summary>
         /// The room in which the game should begin
         /// </summary>
-        public static Room StartRoom { get; set; }
+        public static Room StartRoom
+        {
+            get { return startRoom; }
+            set 
+            {
+                if (map.Contains(value))
+                    startRoom = value;
+                else
+                    throw new RoomDoesNotExisitException(value.ShortName + " has not been added to the map");
+            }
+        }
 
         /// <summary>
         /// List containing all rooms on the map
@@ -55,15 +62,32 @@ namespace TextEngine
         private static List<MapSite> map = new List<MapSite>();
 
         private static Queue<string> messages = new Queue<string>();
+        private static Room startRoom = null;
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// Preform any setup and prepare fot the game to begin
+        /// </summary>
         public static void StartGame()
         {
+            if (!GameOver)
+                throw new InvalidOperationException("A game is in progress");
+
+            if (startRoom == null)
+                throw new InvalidOperationException("The starting room has not been set");
+
             GameOver = false;
-            GameStarted = true;
+
+            // TODO: Any critical start up such as loading/placing/creating rooms, NPCs, items, ETC
         }
 
+        /// <summary>
+        /// Get the name of a direction
+        /// </summary>
+        /// <param name="dir">Direction to get the name of</param>
+        /// <param name="shortName">Return short name susch as "N" instead of "North"</param>
+        /// <returns>String containing the name of the direction</returns>
         public static string DirectionName(Direction dir, bool shortName = false)
         {
             switch (dir)
@@ -98,13 +122,12 @@ namespace TextEngine
         /// </summary>
         /// <param name="room">The room to add</param>
         /// <returns>true on success, false on failure</returns>
-        public static bool AddRoom(Room room)
+        public static void AddRoom(Room room)
         {
             if (RoomExists(room))
-                return false;
+                throw new ArgumentException(room.ShortName + " already exisits in map");
 
             map.Add(room);
-            return true;
         }
 
         /// <summary>
@@ -124,8 +147,5 @@ namespace TextEngine
         public static string GetMessage() => messages.Dequeue();
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-
-
     }
 }

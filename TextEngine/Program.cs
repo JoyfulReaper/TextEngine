@@ -32,16 +32,16 @@ namespace TextEngine
             r1.SetSide(Direction.South, new Wall());
             r1.SetSide(Direction.West, new Wall());
 
-            if (TextEngine.AddRoom(r1))
-                Console.WriteLine("Added: {0}", r1.Name);
+            TextEngine.AddRoom(r1);
+            Console.WriteLine("Added: {0}", r1.Name);
 
             if (TextEngine.RoomExists(r2))
                 Console.WriteLine("r2 is there!");
             else
                 Console.WriteLine("r2 is missing!");
 
-            if (TextEngine.AddRoom(r2))
-                Console.WriteLine("Added: {0}", r2.Name);
+            TextEngine.AddRoom(r2);
+            Console.WriteLine("Added: {0}", r2.Name);
 
             if (TextEngine.RoomExists(r2))
                 Console.WriteLine("r2 is there!");
@@ -78,6 +78,7 @@ namespace TextEngine
 
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);
+            TextEngine.StartRoom = r1;
             TextEngine.StartGame();
             while(!TextEngine.GameOver)
             {
