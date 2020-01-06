@@ -29,28 +29,23 @@ namespace TextEngine
     {
         /// <value>Allows the item to be added to an Inventory</value>
         public bool Obtainable { get; set; }
+
         /// <value>If true the object is visible when looking</value>
         public bool Visible { get; set; }
+
         /// <value>The name of the item</value>
         public string Name { get; set; }
+
         /// <value>The description to be shown for the item</value>
         public string Description { get; set; }
-        /// <value>The Quantity of the item</value>
-        public int Quantity { get; set; }
 
-        public Item(string name, string desc, bool visible, bool obtainable, int quantity)
+        public Item(string name, string desc, bool visible, bool obtainable)
         {
             Name = name; 
             Description = desc;
             Visible = visible;
             Obtainable = obtainable;
-
-            if (quantity < 1)
-                throw new ArgumentOutOfRangeException("Quantity must be > 0");
-            else
-                Quantity = quantity;
         }
-        public Item(string name, string desc, bool visible, bool obtainable) : this(name, desc, true, true, 1) { }
         public Item(string name) : this(name, "", true, true) { }
 
         public virtual void Use()

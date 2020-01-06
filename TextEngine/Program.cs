@@ -10,11 +10,11 @@ namespace TextEngine
     {
         static void Main(string[] args)
         {
+           
             Player player = new Player("Kyle");
             TextEngine.Player = player;
-            Console.WriteLine("Player (engine): {0} Player (local): {1}", TextEngine.Player.ToString(), player.ToString());
-            Console.WriteLine(player == TextEngine.Player);
-
+            player.Inventory.Capacity = 100;
+            
             Room r1 = new Room("New Room!");
             Room r2 = new Room("Another Room", "Room2", "It smells weird", "I think something might have died");
 
@@ -24,7 +24,6 @@ namespace TextEngine
             r2.SetSide(Direction.East, new Wall());
             r2.SetSide(Direction.South, new Wall());
             r2.SetSide(Direction.West, new Exit(r1));
-
          
             r1.SetSide(Direction.Up, new Roof());
             r1.SetSide(Direction.Down, new Floor());
@@ -44,24 +43,36 @@ namespace TextEngine
             if (TextEngine.AddRoom(r2))
                 Console.WriteLine("Added: {0}", r2.Name);
 
-            Item i1 = new Item("Phone", "It's an Android", true, true, 1);
+            if (TextEngine.RoomExists(r2))
+                Console.WriteLine("r2 is there!");
+
+            Console.WriteLine("----------------------------------------------------");
+
+
+            if (!TextEngine.Player.Inventory.HasItem("Phone"))
+                Console.WriteLine("Player has no phone!");
+
+            Item i1 = new Item("Phone", "It's an Android", true, true);
 
             if (player.Inventory.AddItem(i1))
                 Console.WriteLine("Added {0} to player", i1.Name);
 
+            if (TextEngine.Player.Inventory.HasItem("Phone"))
+                Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
+
             if (r1.Inventory.AddItem(i1))
                 Console.WriteLine("Added {0} to room", i1.Name);
+
+            if (TextEngine.Player.Inventory.HasItem("Phone"))
+                Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
             if (player.Inventory.AddItem(i1, 1))
                 Console.WriteLine("Added {0}", i1.Name);
 
-            if (TextEngine.RoomExists(r2))
-                Console.WriteLine("r2 is there!");
-
-            
+            TextEngine.Player.Inventory.AddItem(i1);
 
             if (TextEngine.Player.Inventory.HasItem("Phone"))
-                Console.WriteLine("You have {0} phone.", i1.Quantity);
+                Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
             TextEngine.Player.Move(r1);
 

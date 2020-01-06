@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TextEngine
 {
@@ -36,11 +37,11 @@ namespace TextEngine
         /// <summary>
         /// A list containing all of the items in the inventory
         /// </summary>
-        private List<Item> items;
+        private Dictionary<Item, int> items;
 
         public Inventory(int capacity = 1)
         {
-            items = new List<Item>();
+            items = new Dictionary<Item, int>();
             Capacity = capacity;
             Count = 0;
         }
@@ -55,34 +56,36 @@ namespace TextEngine
         /// <returns>true on success, false on failure</returns>
         public bool AddItem(Item item, int quantity = 1)
         {
-            if (Count + quantity > Capacity)
+            if (Count + quantity > Capacity || !item.Obtainable)
                 return false;
 
-            if (!item.Obtainable)
-                return false;
+            if (items.ContainsKey(item))
+                items[item] += quantity;
 
-            if(items.Contains(item))
-            {
-                item.Quantity += quantity;
-            }
+            if (!HasItem(item))
+                items.Add(item, quantity);
 
-            items.Add(item);
-            Count++;
+            Count += quantity;
 
             return true;
         }
 
+        public bool AddItem(String item, int quantity = 1)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool RemoveItem(Item item, int quantity = 1)
         {
-            if (!items.Contains(item) || quantity > item.Quantity)
+            if (!items.ContainsKey(item) || quantity > items[item])
                 return false;
 
-            item.Quantity -= quantity;
+            items[item] -= quantity;
 
-            if (item.Quantity == 0 && !items.Remove(item))
+            if (items[item] == 0 && !items.Remove(item))
                 return false;
 
-            if (items.Contains(item) && item.Quantity <= 0)
+            if (items.ContainsKey(item) && items[item] <= 0)
                 throw new Exception("Something went wrong in RemoveItem(Item item, int quantity");
 
             return true;
@@ -90,29 +93,26 @@ namespace TextEngine
 
         public bool RemoveItem(String itemName, int quantity = 1)
         {
-            Item item = items.Find(x => x.Name.Equals(itemName));
-            if (item == null)
+            if (!HasItem(itemName))
                 return false;
 
-
-            return RemoveItem(item);
+            return RemoveItem(itemName);
         }
 
-        public bool HasItem(Item item) => items.Contains(item);
+        public bool HasItem(Item item) => items.ContainsKey(item);
 
-        public bool HasItem(String item)
+        public bool HasItem(String itemName) => items.Keys.Any(key => key.Name == itemName);
+
+        public Item GetItem(string name) => items.Keys.First(key => key.Name == name);
+
+        public int ItemQuantity(Item item) => items[item];
+
+        public int ItemQuantity(string itemName)
         {
-            return items.Find(x => x.Name.Equals(item)).Equals(null) ? false : true;
+            if (!HasItem(itemName))
+                throw new ArgumentException("Inventoy does not contain " + itemName);
+
+            return items[GetItem(itemName)];
         }
-
-        public Item GetItem(string name)
-        {
-            if (items.Find(x => x.Name.Equals(name)).Equals(null))
-                return null;
-
-            return items.Find(x => x.Name.Equals(name));
-        }
-
-        
     }
 }
