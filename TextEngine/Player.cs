@@ -21,8 +21,17 @@ using System;
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents the playable character
+    /// </summary>
     public class Player : Character
     {
+        /// <summary>
+        /// Construct a playable character
+        /// </summary>
+        /// <param name="name">Player's name</param>
+        /// <param name="health">Staring health (any int > 0)</param>
+        /// <param name="money">Players starting money. Any decimal, can be negative</param>
         public Player(string name = "Player", int health = 100, decimal money = 0) : base(name, health, money) { }
     }
 }
