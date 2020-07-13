@@ -22,6 +22,16 @@ namespace TextEngine
 {
     public abstract class MapSite
     {
+        /// <summary>
+        /// The name of the MapSite
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Attempt to enter this MapSite
+        /// </summary>
+        /// <param name="character">The Character that is entering the MapSite</param>
+        /// <param name="going"></param>
         public abstract void Enter(Character character, Direction going);
     }
 }

@@ -23,7 +23,6 @@ namespace TextEngine
 {
     public class Roof : MapSite
     {
-        public string Name { get; set; }
         public Roof(string name = "roof") => Name = name;
 
         public override void Enter(Character character, Direction going)

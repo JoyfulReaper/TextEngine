@@ -27,11 +27,6 @@ namespace TextEngine
     public class Exit : MapSite
     {
         /// <summary>
-        /// The name of the exit
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
         /// Weather or not the exit is locked
         /// </summary>
         public bool Locked { get; set; }
