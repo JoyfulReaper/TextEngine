@@ -35,7 +35,7 @@ namespace TextEngine
         /// <summary>
         /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
         /// </summary>
-        public int Health 
+        public virtual int Health 
         {
             get => health;
             set
@@ -57,8 +57,6 @@ namespace TextEngine
 
         private int health;
 
-
-
         public Character(string name = "Character", int health = 100, decimal money = 0)
         {
             Name = name;
@@ -78,7 +76,7 @@ namespace TextEngine
             PreviousLocation = Location;
         }
 
-        public virtual string ToString()
+        public override string ToString()
         {
             return "Name: " + Name + " Health: " + Health + " Money: " + Money;
         }
