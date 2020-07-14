@@ -64,5 +64,10 @@ namespace TextEngine
 
         }
 
+        public override string ToString()
+        {
+            return $"Name: {Name} + toToom: {ToRoom} + Locked: {Locked} + Visible {Visible}";
+        }
+
     }
 }
