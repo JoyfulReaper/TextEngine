@@ -41,22 +41,21 @@ namespace TextEngine
         /// <value>The description to be shown for the item</value>
         public string Description { get; set; }
 
-        public Item(string name, string desc, bool visible, bool obtainable)
+        public Item(string name, string pluralName, string desc, bool visible, bool obtainable)
         {
             Name = name;
+            if (pluralName == null || pluralName.Length <= 0)
+                PluralName = name + "s";
+            else
+                PluralName = pluralName;
             Description = desc;
             Visible = visible;
             Obtainable = obtainable;
         }
 
-        public Item(string name, string des, string pluralName) : this(name, des, true, true)
-        {
-            PluralName = pluralName;
-        }
-        public Item(string name, string des) : this(name, des, true, true)
-        {
-            PluralName = name + "s";
-        }
+        public Item(string name, string pluralName, string des) : this(name, null, des, true, true) { }
+        public Item(string name, string desc, bool visible, bool obtainable) : this(name, null, desc, visible, obtainable) { }
+        public Item(string name, string des) : this(name, null, des, true, true) { }
         public Item(string name) : this(name, "") { }
 
         public virtual void Use()
@@ -78,9 +77,9 @@ namespace TextEngine
             return HashCode.Combine(Obtainable, Visible, Name, Description);
         }
 
-        public virtual string ToString()
+        public override string ToString()
         {
-            return "Name: " + Name + "Plural name" + PluralName + " Description: " + Description + " Visible: " + Visible + " Obtainable: " + Obtainable;
+            return "Name: " + Name + ", Plural name " + PluralName + ", Description: " + Description + ", Visible: " + Visible + ", Obtainable: " + Obtainable;
         }
     }
 }
