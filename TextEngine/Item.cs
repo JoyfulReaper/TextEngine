@@ -36,18 +36,28 @@ namespace TextEngine
         /// <value>The name of the item</value>
         public string Name { get; set; }
 
+        public string PluralName { get; set; }
+
         /// <value>The description to be shown for the item</value>
         public string Description { get; set; }
 
         public Item(string name, string desc, bool visible, bool obtainable)
         {
-            Name = name; 
+            Name = name;
             Description = desc;
             Visible = visible;
             Obtainable = obtainable;
         }
-        public Item(string name, string des) : this(name, des, true, true) { }
-        public Item(string name) : this(name, "", true, true) { }
+
+        public Item(string name, string des, string pluralName) : this(name, des, true, true)
+        {
+            PluralName = pluralName;
+        }
+        public Item(string name, string des) : this(name, des, true, true)
+        {
+            PluralName = name + "s";
+        }
+        public Item(string name) : this(name, "") { }
 
         public virtual void Use()
         {
@@ -70,7 +80,7 @@ namespace TextEngine
 
         public virtual string ToString()
         {
-            return "Name: " + Name + " Description: " + Description + " Visible: " + Visible + " Obtainable: " + Obtainable;
+            return "Name: " + Name + "Plural name" + PluralName + " Description: " + Description + " Visible: " + Visible + " Obtainable: " + Obtainable;
         }
     }
 }
