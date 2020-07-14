@@ -33,8 +33,7 @@ namespace TextEngine
 
         public override void Enter(Character character, Direction going)
         {
-            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", buy you just bump your head on the " + Name);
+            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", but you just bump your head on the " + Name);
         }
-
     }
 }

@@ -53,7 +53,7 @@ namespace TextEngine
         /// Create an exit
         /// </summary>
         /// <param name="toRoom">The MapSite on the other side of the exit</param>
-        public Exit(MapSite toRoom) : this("door", null, false, true) { }
+        public Exit(Room toRoom) : this("door", toRoom, false, true) { }
 
         public override void Enter(Character character, Direction going)
         {
@@ -66,7 +66,7 @@ namespace TextEngine
 
         public override string ToString()
         {
-            return $"Name: {Name} + toToom: {ToRoom} + Locked: {Locked} + Visible {Visible}";
+            return base.ToString() + $", toRoom: {ToRoom.ShortName}, Locked {Locked}, Visible {Visible}";
         }
 
     }

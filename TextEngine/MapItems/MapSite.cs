@@ -33,5 +33,10 @@ namespace TextEngine
         /// <param name="character">The Character that is entering the MapSite</param>
         /// <param name="going"></param>
         public abstract void Enter(Character character, Direction going);
+
+        public override string ToString()
+        {
+            return $"[{this.GetType().Name}] Name: {Name}";
+        }
     }
 }

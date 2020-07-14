@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace TextEngine
 {
@@ -46,6 +47,8 @@ namespace TextEngine
         }
         public Room(string name) : this(name, "", "", "") { }
 
+        public Room(string name, string shortName) : this(name, shortName, "", "") { }
+
         public override void Enter(Character character, Direction dir)
         {
             Visisted = true;
@@ -65,6 +68,11 @@ namespace TextEngine
         public void SetSide(Direction dir, MapSite site)
         {
             sides[dir] = site;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $", ShortName: {ShortName}, Description {Description}, LookDescription: {LookDescription}, Visited: {Visisted}";
         }
     }
 }

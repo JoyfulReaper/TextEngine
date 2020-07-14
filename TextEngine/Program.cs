@@ -15,7 +15,7 @@ namespace TextEngine
             TextEngine.Player = player;
             player.Inventory.Capacity = 100;
             
-            Room r1 = new Room("New Room!");
+            Room r1 = new Room("New Room!", "room1");
             Room r2 = new Room("Another Room", "Room2", "It smells weird", "I think something might have died");
 
             r2.SetSide(Direction.Up, new Roof());
@@ -45,6 +45,14 @@ namespace TextEngine
 
             if (TextEngine.RoomExists(r2))
                 Console.WriteLine("r2 is there!");
+
+            Console.WriteLine("----------------------------------------------------");
+
+            Console.WriteLine(r1.GetSide(Direction.Up).ToString());
+            Console.WriteLine(r1.GetSide(Direction.Down).ToString());
+            Console.WriteLine(r2.GetSide(Direction.West).ToString());
+            Console.WriteLine(r2.GetSide(Direction.East).ToString());
+            Console.WriteLine(r2);
 
             Console.WriteLine("----------------------------------------------------");
 
@@ -90,6 +98,8 @@ namespace TextEngine
                 Console.Write("Enter command: ");
                 string input = Console.ReadLine();
                 TextEngine.AddMessage("You entered: " + input);
+                if (input.ToUpper() == "QUIT")
+                    Environment.Exit(0);
             }
         }
     }
