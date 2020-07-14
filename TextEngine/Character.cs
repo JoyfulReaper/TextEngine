@@ -32,6 +32,8 @@ namespace TextEngine
         /// </summary> 
         public string Description { get; set; }
 
+        public int MaxHealth { get; set; }
+
         /// <summary>
         /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
         /// </summary>
@@ -40,7 +42,12 @@ namespace TextEngine
             get => health;
             set
             {
-                health = value < 0 ? 0 : value;
+                if (value < 0)
+                    health = 0;
+                else if (health > MaxHealth)
+                    health = MaxHealth;
+                else
+                    health = value;
             }
         }
 
