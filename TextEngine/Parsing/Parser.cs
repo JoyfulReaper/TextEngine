@@ -1,4 +1,6 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
+using System.Text.RegularExpressions;
 using TextEngine.Parsing.Text;
 
 namespace TextEngine.Parsing
@@ -14,6 +16,13 @@ namespace TextEngine.Parsing
            
             _tokens = lexer.GetAllTokens().ToImmutableArray();
 
+            return InternalParse();
+        }
+
+        private SyntaxNode InternalParse()
+        {
+            var str = MatchUntil(SyntaxKind.String);
+
             return null;
         }
 
@@ -24,6 +33,17 @@ namespace TextEngine.Parsing
                 return _tokens[^1];
 
             return _tokens[index];
+        }
+
+        public Token MatchUntil(SyntaxKind kind)
+        {
+            Token token;
+            do
+            {
+                token = MatchToken(kind);
+            } while (token.Kind != SyntaxKind.EOF);
+
+            return token;
         }
 
         private Token Current => Peek(0);
