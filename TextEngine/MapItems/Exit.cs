@@ -19,7 +19,7 @@
 using System;
 
 
-namespace TextEngine
+namespace TextEngine.MapItems
 {
     /// <summary>
     /// Represents and exit from one MapSite to another

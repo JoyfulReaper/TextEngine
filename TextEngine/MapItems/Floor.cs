@@ -19,7 +19,7 @@
 using System;
 
 
-namespace TextEngine
+namespace TextEngine.MapItems
 {
     public class Floor : MapSite
     {

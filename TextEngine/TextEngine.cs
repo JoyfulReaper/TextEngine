@@ -18,6 +18,7 @@
 
 using System.Collections.Generic;
 using System;
+using TextEngine.MapItems;
 
 namespace TextEngine
 {
