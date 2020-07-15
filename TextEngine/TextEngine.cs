@@ -24,7 +24,7 @@ namespace TextEngine
     /// <summary>
     /// Represent the directions the player can move in
     /// </summary>
-    public enum Direction { North, South, East, West, Up, Down };
+    public enum Direction { Invalid, North, South, East, West, Up, Down };
 
     /// <summary>
     /// Static class for keeping track of important information
@@ -53,6 +53,7 @@ namespace TextEngine
                 {
                     startRoom = value;
                     Player.Location = startRoom;
+                    startRoom.Enter(Player, Direction.Invalid);
                 }
                 else
                     throw new RoomDoesNotExisitException(value.ShortName + " has not been added to the map");
@@ -117,6 +118,27 @@ namespace TextEngine
                     return "Down";
                 default:
                     return "Unknown Direction";
+            }
+        }
+
+        public static Direction GetDirectionFromChar(char c)
+        {
+            switch (c)
+            {
+                case 'N':
+                    return Direction.North;
+                case 'S':
+                    return Direction.South;
+                case 'E':
+                    return Direction.East;
+                case 'W':
+                    return Direction.West;
+                case 'U':
+                    return Direction.Up;
+                case 'D':
+                    return Direction.Down;
+                default:
+                    return Direction.Invalid;
             }
         }
 

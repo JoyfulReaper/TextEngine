@@ -61,7 +61,7 @@ namespace TextEngine
         {
             Visisted = true;
             TextEngine.Player.Move(this);
-            throw new NotImplementedException();
+            TextEngine.AddMessage(Description);
         }
         /// <summary>
         /// Get a side of the room

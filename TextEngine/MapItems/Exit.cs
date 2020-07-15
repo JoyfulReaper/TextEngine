@@ -58,7 +58,7 @@ namespace TextEngine
         public override void Enter(Character character, Direction going)
         {
             if (!Locked)
-                character.Move(ToRoom);
+                ToRoom.Enter(character, going);
             else
                 TextEngine.AddMessage("You try to go though the " + Name + ", but it is locked.");
 

@@ -48,6 +48,9 @@ namespace Kgivler
 
         public string LineWrap(string input)
         {
+            if (input == null || input.Length <= 0)
+                return "";
+
             text = new StringBuilder(input);
             spaceLeft = LineWidth;
             string word;
