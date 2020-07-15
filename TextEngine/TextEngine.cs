@@ -50,7 +50,10 @@ namespace TextEngine
             set 
             {
                 if (map.Contains(value))
+                {
                     startRoom = value;
+                    Player.Location = startRoom;
+                }
                 else
                     throw new RoomDoesNotExisitException(value.ShortName + " has not been added to the map");
             }
@@ -137,6 +140,11 @@ namespace TextEngine
         /// <returns>true on success, false on failure</returns>
         public static bool RoomExists(Room room) => map.Contains(room);
 
+
+        public static void ProccessCommand(string command)
+        {
+            CommandProccessor.ProcessCommand(command);
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
 

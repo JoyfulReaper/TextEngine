@@ -56,7 +56,7 @@ namespace TextEngine
         /// </summary>
         public decimal Money { get; set; }
 
-        public Room Location { get; private set; }
+        public Room Location { get; set; }
 
         public Room PreviousLocation { get; private set; }
 

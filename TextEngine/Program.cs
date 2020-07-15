@@ -97,10 +97,14 @@ namespace TextEngine
 
                 Console.Write("Enter command: ");
                 string input = Console.ReadLine();
-                TextEngine.AddMessage("You entered: " + input);
+                TextEngine.ProccessCommand(input);
                 if (input.ToUpper() == "QUIT")
                     Environment.Exit(0);
             }
+        }
+        public static void TestingSetup()
+        {
+
         }
     }
 }

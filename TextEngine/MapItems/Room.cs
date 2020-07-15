@@ -40,7 +40,15 @@ namespace TextEngine
             Name = name;
             ShortName = shortName;
             Description = desc;
-            LookDescription = lookDesc;
+
+            if (lookDesc == null || lookDesc.Length <= 0)
+                if (Description != null && Description.Length >= 1)
+                    LookDescription = Description;
+                else
+                    LookDescription = "You look around, but don't see anything of any significance";
+            else
+                LookDescription = lookDesc;
+
             Visisted = false;
             Inventory = new Inventory();
             sides = new Dictionary<Direction, MapSite>();
