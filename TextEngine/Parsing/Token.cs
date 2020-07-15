@@ -47,5 +47,7 @@ namespace TextEngine.Parsing
         ///  The TokenSpan
         /// </summary>
         public override TextSpan Span => new TextSpan(Position, Text?.Length ?? 0);
+
+        public override string ToString() => Kind + ": " + Text;
     }
 }
