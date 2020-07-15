@@ -18,7 +18,7 @@
 
 using System;
 
-namespace TextEngine
+namespace TextEngine.MapItems
 {
     /// <summary>
     /// Represents a wall

@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace TextEngine
+namespace TextEngine.MapItems
 {
     /// <summary>
     /// Represents a room with 6 sides, one for each Direction

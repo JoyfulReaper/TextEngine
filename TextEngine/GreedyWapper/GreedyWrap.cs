@@ -28,7 +28,7 @@
 using System;
 using System.Text;
 
-namespace Kgivler
+namespace Kgivler.GreedyWrap
 {
     public class GreedyWrap
     {

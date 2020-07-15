@@ -2,7 +2,8 @@
 // Inspired by my really bad attempt in c++ 6 years ago :)
 
 using System;
-using Kgivler;
+using Kgivler.GreedyWrap;
+using TextEngine.MapItems;
 
 namespace TextEngine
 {
