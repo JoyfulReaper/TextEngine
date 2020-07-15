@@ -22,6 +22,21 @@ namespace TextEngine.Parsing
             _text = src;
         }
 
+        public IEnumerable<Token> GetAllTokens()
+        {
+            Token token;
+            do
+            {
+                token = Lex();
+
+                if (token.Kind != SyntaxKind.Whitespace &&
+                    token.Kind != SyntaxKind.BadToken)
+                {
+                    yield return token;
+                }
+            } while (token.Kind != SyntaxKind.EOF);
+        }
+
         private char Current => Peek(0);
 
         private char Lookahead => Peek(1);
