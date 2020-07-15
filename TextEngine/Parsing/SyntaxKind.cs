@@ -13,7 +13,7 @@
         /// <summary>
         ///  Identifier Token
         /// </summary>
-        Identifier,
+        Keyword,
 
         /// <summary>
         ///  String Token
@@ -24,5 +24,7 @@
         ///  Number Token
         /// </summary>
         Number,
+        BadToken,
+        Whitespace,
     }
 }
