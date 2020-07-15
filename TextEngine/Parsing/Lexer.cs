@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TextEngine.Parsing
 {
-    class Lexer
+    /// <summary>
+    ///  A Tokenizer
+    /// </summary>
+    public sealed class Lexer
     {
     }
 }
