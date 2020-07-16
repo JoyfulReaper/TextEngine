@@ -4,7 +4,6 @@ on "setup" ask for "Please Tell me your name: " to "name"
 money "Gulden" and "Silver" and "Bronce""
     100 "Silver" match "Gulden" and
     10 "Bronce" match "Silver"
-end
 
 weapon "sword" with 
     mindamage 10 and 

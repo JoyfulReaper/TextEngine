@@ -89,34 +89,25 @@ namespace TextEngine.Parsing
         {
             if(MatchCurrentKeyword("character"))
             {
-                return ParseCharacterDefinition();
+                return ParsePropertyOnly<CharacterDefinitionNode>("character");
             }
             else if(MatchCurrentKeyword("weapon"))
             {
-                return ParseWeaponDefinition();
+                return ParsePropertyOnly<WeaponDefinitionNode>("weapon");
             }
 
             return null;
         }
 
-        private SyntaxNode ParseWeaponDefinition()
+        private T ParsePropertyOnly<T>(string keyword)
+            where T : PropertyOnlyBasedCommand
         {
-            MatchKeyword("weapon");
+            MatchKeyword(keyword);
             var name = MatchToken(SyntaxKind.String);
             MatchKeyword("with");
             var properties = ParsePropertyList();
 
-            return new WeaponDefinitionNode(name.Text, properties);
-        }
-
-        public SyntaxNode ParseCharacterDefinition()
-        {
-            MatchKeyword("character");
-            var name = MatchToken(SyntaxKind.String);
-            MatchKeyword("with");
-            var properties = ParsePropertyList();
-
-            return new CharacterDefinitionNode(name.Text, properties);
+            return (T)Activator.CreateInstance(typeof(T), name.Text, properties);
         }
 
         private Dictionary<string, object> ParsePropertyList()
