@@ -2,15 +2,10 @@
 
 namespace TextEngine.Parsing.Syntax
 {
-    public class CharacterDefinitionNode : SyntaxNode
+    public class CharacterDefinitionNode : PropertyOnlyBasedCommand
     {
-        public CharacterDefinitionNode(string name, Dictionary<string, object> properties)
+        public CharacterDefinitionNode(string name, Dictionary<string, object> properties) : base(name, properties)
         {
-            Name = name;
-            Properties = properties;
         }
-
-        public string Name { get; }
-        public Dictionary<string, object> Properties { get; }
     }
 }

@@ -2,15 +2,10 @@
 
 namespace TextEngine.Parsing.Syntax
 {
-    public class WeaponDefinitionNode : SyntaxNode
+    public class WeaponDefinitionNode : PropertyOnlyBasedCommand
     {
-        public WeaponDefinitionNode(string name, Dictionary<string, object> properties)
+        public WeaponDefinitionNode(string name, Dictionary<string, object> properties) : base(name, properties)
         {
-            Name = name;
-            Properties = properties;
         }
-
-        public string Name { get; }
-        public Dictionary<string, object> Properties { get; }
     }
 }
