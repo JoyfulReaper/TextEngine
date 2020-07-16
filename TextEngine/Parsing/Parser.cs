@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text.RegularExpressions;
+using TextEngine.Parsing.Syntax;
 using TextEngine.Parsing.Text;
 
 namespace TextEngine.Parsing
@@ -21,7 +23,7 @@ namespace TextEngine.Parsing
 
         private SyntaxNode InternalParse()
         {
-            var value = ParseCharacter();
+            var value = ParseCharacterDefinition();
             MatchToken(SyntaxKind.EOF);
 
             return value;
@@ -47,9 +49,69 @@ namespace TextEngine.Parsing
             return token;
         }
 
-        public SyntaxNode ParseCharacter()
+        public SyntaxNode ParseCharacterDefinition()
         {
+            MatchKeyword("character");
+            var name = MatchToken(SyntaxKind.String);
+            MatchKeyword("with");
+            var properties = ParsePropertyList();
 
+            return new CharacterDefinitionNode(name.Text, properties);
+        }
+
+        private Dictionary<string, object> ParsePropertyList()
+        {
+            var result = new Dictionary<string, object>();
+
+            var parseNextArgument = true;
+            while (parseNextArgument &&
+                   Current.Kind != SyntaxKind.EndToken &&
+                   Current.Kind != SyntaxKind.EOF)
+            {
+                var prop = ParseProperty();
+                result.Add(prop.name, prop.value);
+
+                if(!AcceptKeyword("and", out var andToken))
+                {
+                    parseNextArgument = false;
+                }
+            }
+
+
+            return result;
+        }
+
+        public bool AcceptKeyword(string keyword, out Token token)
+        {
+            try
+            {
+                token = MatchKeyword(keyword);
+                return true;
+            }
+            catch
+            {
+                token = new Token(SyntaxKind.BadToken, -1, null, null);
+                return false;
+            }
+        }
+
+        private (string name, SyntaxNode value) ParseProperty()
+        {
+            var name = MatchToken(SyntaxKind.Keyword);
+            var value = MatchToken(SyntaxKind.Number);
+
+            return (name.Text, new LiteralNode(int.Parse(value.Text)));
+        }
+
+        public Token MatchKeyword(string keyword)
+        {
+            var keywordToken = MatchToken(SyntaxKind.Keyword);
+            if(keywordToken.Text == keyword)
+            {
+                return keywordToken;
+            }
+
+            throw new Exception($"expected '{keyword}' got '{keywordToken.Text}'");
         }
 
         private Token Current => Peek(0);

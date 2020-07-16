@@ -7,7 +7,10 @@ key with id "chest_in_castle"
 
 openable "Chest" open with "chest_in_castle"
 
-character "leo" with health 100 and money 150
+character "leo" with 
+    health 100 
+    and money 150 
+end
 
 npc "carl" with dialog "welcome dude"
 

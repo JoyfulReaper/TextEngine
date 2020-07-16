@@ -26,7 +26,7 @@ namespace TextEngine.Parsing
         /// <summary>
         ///  The TokenType
         /// </summary>
-        public override SyntaxKind Kind { get; }
+        public SyntaxKind Kind { get; }
 
         /// <summary>
         ///  The Startposition
