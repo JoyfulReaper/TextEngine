@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextEngine", "TextEngine\TextEngine.csproj", "{133391C3-C7E6-420D-A0B7-DEC93BA02FB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTests", "LibraryTests\LibraryTests.csproj", "{9522CF45-2846-418F-B1D7-1EF0689FA1D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryTests", "LibraryTests\LibraryTests.csproj", "{9522CF45-2846-418F-B1D7-1EF0689FA1D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AD5B7D7-3995-4B07-A6FD-F82686ADC0EE}"
+	ProjectSection(SolutionItems) = preProject
+		Sample.script = Sample.script
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

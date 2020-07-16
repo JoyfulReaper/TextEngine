@@ -1,0 +1,25 @@
+memoryslot "name" 
+on "setup" ask for "Please Tell me your name: " to "name"
+
+weapon "sword" with mindamage 10 and maxdamage 35
+
+key with id "chest_in_castle"
+
+openable "Chest" open with "chest_in_castle"
+
+npc "carl" with dialog "welcome dude"
+
+dialog "welcome dude" based on "intro"
+      "hello $(name). would you get a free weapon?"
+          on "yes" add "sword" to inventory
+          on "no" open dialog "first mission"
+
+verbs for direction
+          "w" or "west" is left
+           "e" or "east" is right
+
+start with
+     dialog "intro"
+     play "introsound"
+
+on "exit" say "goodbye"
