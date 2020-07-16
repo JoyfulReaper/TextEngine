@@ -1,8 +1,30 @@
-﻿// This will be an attempt to use Writing a Text Adventrure Engine in C#
-// Inspired by my really bad attempt in c++ 6 years ago :)
+﻿/*
+MIT License
+
+Copyright(c) 2020 Kyle Givler
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 using System;
-using Kgivler;
+using Kgivler.GreedyWrap;
+using TextEngine.MapItems;
 
 namespace TextEngine
 {
@@ -15,8 +37,8 @@ namespace TextEngine
             TextEngine.Player = player;
             player.Inventory.Capacity = 100;
             
-            Room r1 = new Room("New Room!", "room1", "An empty room", "It looks like there is an exit to the East!");
-            Room r2 = new Room("Another Room", "Room2", "It smells weird", "I think something might have died in here!");
+            Room r1 = new Room("Starting Room", "Starting Room", "An empty room", "It looks like there is an exit to the East!");
+            Room r2 = new Room("Another Room", "Second Room", "There is a foul odor in the air", "I think something might have died in here!");
 
             r2.SetSide(Direction.Up, new Roof());
             r2.SetSide(Direction.Down, new Floor());
@@ -83,6 +105,8 @@ namespace TextEngine
                 Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
             Console.WriteLine(i1.ToString());
+
+            Console.WriteLine("----------------------------------------------------");
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);
             TextEngine.StartRoom = r1;
