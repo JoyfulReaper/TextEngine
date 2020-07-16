@@ -7,9 +7,9 @@ namespace LibraryTests
     public class ParserTests
     {
         [TestMethod]
-        public void Lexer_Should_Pass()
+        public void Parse_Character_Should_Pass()
         {
-            var src = "go \"left\" and pickup item\ntalk with carl";
+            var src = "character \"leo\" with health 100 and money 150";
             var parser = new Parser();
             var result = parser.Parse(src);
         }

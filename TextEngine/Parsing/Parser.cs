@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Immutable;
 using System.Text.RegularExpressions;
 using TextEngine.Parsing.Text;
@@ -21,9 +21,10 @@ namespace TextEngine.Parsing
 
         private SyntaxNode InternalParse()
         {
-            var str = MatchUntil(SyntaxKind.String);
+            var value = ParseCharacter();
+            MatchToken(SyntaxKind.EOF);
 
-            return null;
+            return value;
         }
 
         private Token Peek(int offset)
@@ -44,6 +45,11 @@ namespace TextEngine.Parsing
             } while (token.Kind != SyntaxKind.EOF);
 
             return token;
+        }
+
+        public SyntaxNode ParseCharacter()
+        {
+
         }
 
         private Token Current => Peek(0);
