@@ -1,3 +1,6 @@
+include "weapons.script"
+include "characters.script"
+
 memoryslot "name" 
 on "setup" ask for "Please Tell me your name: " to "name"
 
