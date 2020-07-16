@@ -24,13 +24,25 @@ SOFTWARE.
 
 namespace TextEngine.MapItems
 {
+    /// <summary>
+    /// Represents the Roof, the MapSite in the Up direction
+    /// </summary>
     public class Roof : MapSite
     {
+        /// <summary>
+        /// Construct a Roof
+        /// </summary>
+        /// <param name="name">The name of the Roof</param>
         public Roof(string name = "roof") => Name = name;
 
-        public override void Enter(Character character, Direction going)
+        /// <summary>
+        /// Attempt to enter this Roof
+        /// </summary>
+        /// <param name="character">The Chacater entering</param>
+        /// <param name="heading">The Character's heading</param>
+        public override void Enter(Character character, Direction heading)
         {
-            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", buy you just bump your head on the " + Name);
+            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(heading) + ", buy you just bump your head on the " + Name);
         }
     }
 }

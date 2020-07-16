@@ -33,11 +33,11 @@ namespace TextEngine
     /// </summary>
     class ContainerItem : Item
     {
-        public bool locked { get; set; }
-        public Inventory inventory { get; }
+        public bool Locked { get; set; }
+        public Inventory Inventory { get; }
 
-        public ContainerItem(string name, string desc, bool visible, bool obtainable, int cap) : base(name, desc, visible, obtainable) { inventory = new Inventory(cap); }
-        public ContainerItem(string name, string desc, bool visible, bool obtainable) : base(name, desc, visible, obtainable) { inventory = new Inventory(); }
-        public ContainerItem(string name) : this(name, "", true, true) { inventory = new Inventory(); }
+        public ContainerItem(string name, string desc, bool visible, bool obtainable, int cap) : base(name, desc, visible, obtainable) { Inventory = new Inventory(cap); }
+        public ContainerItem(string name, string desc, bool visible, bool obtainable) : base(name, desc, visible, obtainable) { Inventory = new Inventory(); }
+        public ContainerItem(string name) : this(name, "", true, true) { Inventory = new Inventory(); }
     }
 }

@@ -44,6 +44,13 @@ namespace TextEngine.MapItems
         /// </summary>
         public Room ToRoom { get; set; }
 
+        /// <summary>
+        /// Construct an Exit
+        /// </summary>
+        /// <param name="name">The name of the Exit</param>
+        /// <param name="toRoom">The room that the Exit leads to</param>
+        /// <param name="locked">Whether or not the Exit is locked</param>
+        /// <param name="visible">Whether or not the Exit is visible</param>
         public Exit(string name, Room toRoom, bool locked, bool visible)
         {
             Name = name;
@@ -58,15 +65,24 @@ namespace TextEngine.MapItems
         /// <param name="toRoom">The MapSite on the other side of the exit</param>
         public Exit(Room toRoom) : this("door", toRoom, false, true) { }
 
-        public override void Enter(Character character, Direction going)
+        /// <summary>
+        /// Attempt to Enter (Use) this exit
+        /// </summary>
+        /// <param name="character">The Character attempting to use this Exit</param>
+        /// <param name="heading">The Character's heading</param>
+        public override void Enter(Character character, Direction heading)
         {
             if (!Locked)
-                ToRoom.Enter(character, going);
+                ToRoom.Enter(character, heading);
             else
                 TextEngine.AddMessage("You try to go though the " + Name + ", but it is locked.");
 
         }
 
+        /// <summary>
+        /// A string representation of this Exit
+        /// </summary>
+        /// <returns>A string representation of this Exit</returns>
         public override string ToString()
         {
             return base.ToString() + $", toRoom: {ToRoom.ShortName}, Locked {Locked}, Visible {Visible}";

@@ -24,13 +24,25 @@ SOFTWARE.
 
 namespace TextEngine.MapItems
 {
+    /// <summary>
+    /// Reprensents the MapSite in the Down direction, the Floor
+    /// </summary>
     public class Floor : MapSite
     {
+        /// <summary>
+        /// Construct a Floor
+        /// </summary>
+        /// <param name="name">The name of the Floor</param>
         public Floor(string name = "floor") => Name = name;
 
-        public override void Enter(Character character, Direction going)
+        /// <summary>
+        /// Attempt to enter this floor
+        /// </summary>
+        /// <param name="character">The Character entering</param>
+        /// <param name="heading">The Character's heading</param>
+        public override void Enter(Character character, Direction heading)
         {
-            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", but you can't get through the " + Name);
+            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(heading) + ", but you can't get through the " + Name);
         }
     }
 }

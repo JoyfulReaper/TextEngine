@@ -70,9 +70,9 @@ namespace TextEngine
         /// <summary>
         /// List containing all rooms on the map
         /// </summary>
-        private static List<MapSite> map = new List<MapSite>();
+        private static readonly List<MapSite> map = new List<MapSite>();
 
-        private static Queue<string> messages = new Queue<string>();
+        private static readonly Queue<string> messages = new Queue<string>();
         private static Room startRoom = null;
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
