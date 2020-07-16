@@ -107,7 +107,10 @@ namespace TextEngine.Parsing
             MatchKeyword("with");
             var properties = ParsePropertyList();
 
-            return (T)Activator.CreateInstance(typeof(T), name.Text, properties);
+            var result = (T)Activator.CreateInstance(typeof(T), name.Text, properties);
+            MatchToken(SyntaxKind.EndToken);
+
+            return result;
         }
 
         private Dictionary<string, object> ParsePropertyList()
