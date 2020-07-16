@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Text.RegularExpressions;
 using TextEngine.Parsing.Syntax;
 using TextEngine.Parsing.Text;
@@ -44,7 +45,7 @@ namespace TextEngine.Parsing
             do
             {
                 token = MatchToken(kind);
-            } while (token.Kind != SyntaxKind.EOF);
+            } while (token.Kind != SyntaxKind.EOF && token.Kind == kind);
 
             return token;
         }
@@ -68,8 +69,16 @@ namespace TextEngine.Parsing
             while (Current.Kind != SyntaxKind.EOF)
             {
                 var startToken = Current;
+                var member = ParseMember();
 
-                members.Add(ParseMember());
+                if (member is BlockNode bn)
+                {
+                    members.AddRange(bn.Children);
+                }
+                else
+                {
+                    members.Add(member);
+                }
 
                 // If ParseMember() did not consume any tokens,
                 // we need to skip the current token and continue
@@ -95,8 +104,23 @@ namespace TextEngine.Parsing
             {
                 return ParsePropertyOnly<WeaponDefinitionNode>("weapon");
             }
+            else if(MatchCurrentKeyword("include"))
+            {
+                return ParseInclude();
+            }
 
             return null;
+        }
+
+        private SyntaxNode ParseInclude()
+        {
+            MatchKeyword("include");
+            var filename = MatchToken(SyntaxKind.String);
+
+            var p = new Parser();
+            var tree = p.Parse(File.ReadAllText(filename.Value.ToString()));
+
+            return tree;
         }
 
         private T ParsePropertyOnly<T>(string keyword)
