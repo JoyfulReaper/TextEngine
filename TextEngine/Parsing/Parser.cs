@@ -23,7 +23,7 @@ namespace TextEngine.Parsing
 
         private SyntaxNode InternalParse()
         {
-            var value = ParseCharacterDefinition();
+            var value = ParseBlock();
             MatchToken(SyntaxKind.EOF);
 
             return value;
@@ -47,6 +47,56 @@ namespace TextEngine.Parsing
             } while (token.Kind != SyntaxKind.EOF);
 
             return token;
+        }
+
+        public bool MatchCurrentKeyword(string keyword)
+        {
+            return Current.Kind == SyntaxKind.Keyword && Current.Text == keyword;
+        }
+
+        public SyntaxNode ParseBlock()
+        {
+            var members = ParseMembers();
+
+            return new BlockNode(members);
+        }
+
+        private IEnumerable<SyntaxNode> ParseMembers()
+        {
+            var members = new List<SyntaxNode>();
+
+            while (Current.Kind != SyntaxKind.EOF)
+            {
+                var startToken = Current;
+
+                members.Add(ParseMember());
+
+                // If ParseMember() did not consume any tokens,
+                // we need to skip the current token and continue
+                // in order to avoid an infinite loop.
+                //
+                // We don't need to report an error, because we'll
+                // already tried to parse an expression statement
+                // and reported one.
+                if (Current == startToken)
+                    NextToken();
+            }
+
+            return members;
+        }
+
+        private SyntaxNode ParseMember()
+        {
+            if(MatchCurrentKeyword("character"))
+            {
+                return ParseCharacterDefinition();
+            }
+            else if(MatchCurrentKeyword("weapon"))
+            {
+                //ParseWeaponDefinition();
+            }
+
+            return null;
         }
 
         public SyntaxNode ParseCharacterDefinition()
@@ -80,6 +130,8 @@ namespace TextEngine.Parsing
 
             return result;
         }
+
+
 
         public bool AcceptKeyword(string keyword, out Token token)
         {
