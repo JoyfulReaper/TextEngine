@@ -25,7 +25,7 @@ namespace LibraryTests
         [TestMethod]
         public void Parse_Many_Should_Pass()
         {
-            var src = "include \"base.script\"\nweapon \"sword\" with mindamage 10 and maxdamage 35 end character \"leo\" with health 100 and money 150 end";
+            var src = "include \"base.script\"\nkey \"blub\" with maxusage 10 end\nweapon \"sword\" with mindamage 10 and maxdamage 35 end character \"leo\" with health 100 and money 150 end";
             var parser = new Parser();
             var result = parser.Parse(src);
         }

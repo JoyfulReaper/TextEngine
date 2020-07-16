@@ -100,9 +100,13 @@ namespace TextEngine.Parsing
             {
                 return ParsePropertyOnly<CharacterDefinitionNode>("character");
             }
-            else if(MatchCurrentKeyword("weapon"))
+            else if (MatchCurrentKeyword("weapon"))
             {
                 return ParsePropertyOnly<WeaponDefinitionNode>("weapon");
+            }
+            else if (MatchCurrentKeyword("key"))
+            {
+                return ParsePropertyOnly<KeyDefinitionNode>("key");
             }
             else if(MatchCurrentKeyword("include"))
             {
