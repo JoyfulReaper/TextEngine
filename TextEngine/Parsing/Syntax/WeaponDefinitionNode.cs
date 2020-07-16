@@ -2,9 +2,9 @@
 
 namespace TextEngine.Parsing.Syntax
 {
-    public class CharacterDefinitionNode : SyntaxNode
+    public class WeaponDefinitionNode : SyntaxNode
     {
-        public CharacterDefinitionNode(string name, Dictionary<string, object> properties)
+        public WeaponDefinitionNode(string name, Dictionary<string, object> properties)
         {
             Name = name;
             Properties = properties;

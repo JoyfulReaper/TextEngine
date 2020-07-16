@@ -6,7 +6,10 @@ money "Gulden" and "Silver" and "Bronce""
     10 "Bronce" match "Silver"
 end
 
-weapon "sword" with mindamage 10 and maxdamage 35
+weapon "sword" with 
+    mindamage 10 and 
+    maxdamage 35
+end
 
 key with id "chest_in_castle"
 

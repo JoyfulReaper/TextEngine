@@ -93,10 +93,20 @@ namespace TextEngine.Parsing
             }
             else if(MatchCurrentKeyword("weapon"))
             {
-                //ParseWeaponDefinition();
+                return ParseWeaponDefinition();
             }
 
             return null;
+        }
+
+        private SyntaxNode ParseWeaponDefinition()
+        {
+            MatchKeyword("weapon");
+            var name = MatchToken(SyntaxKind.String);
+            MatchKeyword("with");
+            var properties = ParsePropertyList();
+
+            return new WeaponDefinitionNode(name.Text, properties);
         }
 
         public SyntaxNode ParseCharacterDefinition()

@@ -13,5 +13,13 @@ namespace LibraryTests
             var parser = new Parser();
             var result = parser.Parse(src);
         }
+
+        [TestMethod]
+        public void Parse_Weapon_Should_Pass()
+        {
+            var src = "weapon \"sword\" with mindamage 10 and maxdamage 35";
+            var parser = new Parser();
+            var result = parser.Parse(src);
+        }
     }
 }
