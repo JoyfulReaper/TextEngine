@@ -37,8 +37,8 @@ namespace TextEngine
             TextEngine.Player = player;
             player.Inventory.Capacity = 100;
             
-            Room r1 = new Room("New Room!", "room1", "An empty room", "It looks like there is an exit to the East!");
-            Room r2 = new Room("Another Room", "Room2", "It smells weird", "I think something might have died in here!");
+            Room r1 = new Room("Starting Room", "Starting Room", "You find yourself in a rather large and dark room", "You look around, It looks like there is an exit to the East!");
+            Room r2 = new Room("Another Room", "Second Room", "You smell a foul scent", "I think something might have died in here!");
 
             r2.SetSide(Direction.Up, new Roof());
             r2.SetSide(Direction.Down, new Floor());
@@ -105,6 +105,9 @@ namespace TextEngine
                 Console.WriteLine("You have {0} phone.", player.Inventory.ItemQuantity("Phone"));
 
             Console.WriteLine(i1.ToString());
+
+
+            Console.WriteLine("----------------------------------------------------");
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);
             TextEngine.StartRoom = r1;
