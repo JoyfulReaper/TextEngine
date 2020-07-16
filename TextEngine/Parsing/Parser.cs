@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
 using System.Text.RegularExpressions;
 using TextEngine.Parsing.Text;
@@ -59,6 +59,8 @@ namespace TextEngine.Parsing
         {
             if (Current.Kind == kind)
                 return NextToken();
+
+            if (Current.Kind != kind) throw new Exception($"Expected '{kind}' got '{Current.Kind}'");
 
             return new Token(kind, Current.Position, null, null);
         }
