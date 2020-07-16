@@ -95,6 +95,12 @@ namespace TextEngine
             Count += quantity;
         }
 
+        /// <summary>
+        /// Add Item to Inventory
+        /// </summary>
+        /// <param name="item">The Item to add</param>
+        /// <param name="quantity">The quantity to add</param>
+        /// <returns>throws an exception for now :(</returns>
         public bool AddItem(String item, int quantity = 1)
         {
             throw new NotImplementedException("Later, when we can load items from files, I promise!");
@@ -142,8 +148,18 @@ namespace TextEngine
         /// <returns>true if the item is contained, false if not</returns>
         public bool HasItem(Item item) => items.ContainsKey(item);
 
+        /// <summary>
+        /// Check if the Inventory contains an Item
+        /// </summary>
+        /// <param name="itemName">The Item to check for</param>
+        /// <returns>True if contained, false otherwise</returns>
         public bool HasItem(String itemName) => items.Keys.Any(key => key.Name == itemName);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">Item to get</param>
+        /// <returns>The Item</returns>
         public Item GetItem(string name)
         {
             if (!HasItem(name))
@@ -152,8 +168,18 @@ namespace TextEngine
             return items.Keys.First(key => key.Name == name);
         }
 
+        /// <summary>
+        /// Check how many of an Item are in the Inventory
+        /// </summary>
+        /// <param name="item">The item to check for</param>
+        /// <returns>The number of that item in the Inventory</returns>
         public int ItemQuantity(Item item) => items[item];
 
+        /// <summary>
+        /// Check how many of an Item are in the Inventory
+        /// </summary>
+        /// <param name="itemName">The name of the Item to check</param>
+        /// <returns>The number of that item in the Inventory</returns>
         public int ItemQuantity(string itemName)
         {
             if (!HasItem(itemName))

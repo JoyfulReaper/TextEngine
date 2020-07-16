@@ -22,16 +22,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/// <summary>
-/// Represents a weapon
-/// </summary>
+
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents a Weapon
+    /// </summary>
     public class Weapon : Item
     {
+        /// <summary>
+        /// The minimum amount of Damage a weapon is capable of inflicting
+        /// </summary>
         public int MinDamage { get; set; }
+        /// <summary>
+        /// The maximum amount of Dmage a weapon is capable of inflicting
+        /// </summary>
         public int MaxDamage { get; set; }
 
+        /// <summary>
+        /// Construct a weapon
+        /// </summary>
+        /// <param name="name">The name of the weapon</param>
         public Weapon(string name) : base(name) { }
     }
 }
