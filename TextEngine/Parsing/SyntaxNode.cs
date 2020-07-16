@@ -9,8 +9,6 @@ namespace TextEngine.Parsing
     public abstract class SyntaxNode
     {
 
-        public abstract SyntaxKind Kind { get; }
-
         public virtual TextSpan Span
         {
             get
@@ -66,7 +64,7 @@ namespace TextEngine.Parsing
 
             Console.ForegroundColor = node is Token ? ConsoleColor.Blue : ConsoleColor.Cyan;
 
-            Console.Write(node.Kind);
+            Console.Write(node.GetType().Name);
 
             if (node is Token t && t.Value != null)
             {
