@@ -13,16 +13,17 @@ weapon "sword" with
     maxdamage 35
 end
 
-key with id "chest_in_castle"
+key "chest_in_castle" with 
+    maxusage 1
+end
 
 openable "Chest" open with "chest_in_castle"
 
 character "leo" with 
     health 100 
     and money 150 
+    and dialog "welcome dude"
 end
-
-npc "carl" with dialog "welcome dude"
 
 dialog "welcome dude" based on "intro"
       "hello $(name). would you get a free weapon?"
