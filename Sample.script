@@ -1,13 +1,6 @@
 include "weapons.script"
 include "characters.script"
 
-memoryslot "name" 
-on "setup" ask for "Please Tell me your name: " to "name"
-
-money "Gulden" and "Silver" and "Bronce""
-    100 "Silver" match "Gulden" and
-    10 "Bronce" match "Silver"
-
 weapon "sword" with 
     mindamage 10 and 
     maxdamage 35
@@ -17,13 +10,23 @@ key "chest_in_castle" with
     maxusage 1
 end
 
-openable "Chest" open with "chest_in_castle"
-
 character "leo" with 
     health 100 
     and money 150 
     and dialog "welcome dude"
 end
+
+memory "name" equals "Tombo"
+on "setup" ask for "Please Tell me your name: " to "name"
+
+money "Gulden" and "Silver" and "Bronce""
+    100 "Silver" match "Gulden" and
+    10 "Bronce" match "Silver"
+
+
+
+openable "Chest" open with "chest_in_castle"
+
 
 dialog "welcome dude" based on "intro"
       "hello $(name). would you get a free weapon?"

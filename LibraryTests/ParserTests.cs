@@ -29,5 +29,21 @@ namespace LibraryTests
             var parser = new Parser();
             var result = parser.Parse(src);
         }
+
+        [TestMethod]
+        public void Parse_Memory_Should_Pass()
+        {
+            var src = "memory \"name\" equals \"dodo\"";
+            var parser = new Parser();
+            var result = parser.Parse(src);
+        }
+
+        [TestMethod]
+        public void Parse_Memory_Empty_Should_Pass()
+        {
+            var src = "memory \"name\"";
+            var parser = new Parser();
+            var result = parser.Parse(src);
+        }
     }
 }

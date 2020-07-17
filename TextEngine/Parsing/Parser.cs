@@ -112,6 +112,19 @@ namespace TextEngine.Parsing
             {
                 return ParseInclude();
             }
+            else if(MatchCurrentKeyword("memory"))
+            {
+                var keyword = MatchKeyword("memory");
+                var slotname = MatchToken(SyntaxKind.String);
+                object initialvalue = null;
+                if(MatchCurrentKeyword("equals"))
+                {
+                    var equalsToken = MatchKeyword("equals");
+                    initialvalue = MatchToken(SyntaxKind.String).Value; // replace with ParseValue()
+                }
+
+                return new MemorySlotDefinition(slotname.Value.ToString(), initialvalue);
+            }
 
             return null;
         }
