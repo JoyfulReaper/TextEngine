@@ -109,6 +109,13 @@ namespace TextEngine.Parsing
 
             var length = _position - _start;
             var text = _text.ToString(_start, length);
+
+            if(text == "end")
+            {
+                _kind = SyntaxKind.EndToken;
+                return;
+            }
+
             _kind = SyntaxKind.Keyword;
         }
 

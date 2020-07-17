@@ -1,0 +1,4 @@
+﻿weapon "granate" with 
+	damage 10 and 
+	maxusagecount 3 
+end

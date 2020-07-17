@@ -26,5 +26,6 @@
         Number,
         BadToken,
         Whitespace,
+        EndToken,
     }
 }

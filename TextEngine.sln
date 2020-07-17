@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextEngine", "TextEngine\Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryTests", "LibraryTests\LibraryTests.csproj", "{9522CF45-2846-418F-B1D7-1EF0689FA1D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AD5B7D7-3995-4B07-A6FD-F82686ADC0EE}"
+	ProjectSection(SolutionItems) = preProject
+		Sample.script = Sample.script
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{C123DFB9-1EBF-4C04-A575-90CEECAB8710}"
 EndProject
 Global

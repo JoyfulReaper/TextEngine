@@ -17,4 +17,10 @@
     <ProjectReference Include="..\TextEngine\TextEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="base.script">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
