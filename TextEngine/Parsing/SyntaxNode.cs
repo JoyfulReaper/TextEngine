@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TextEngine.Parsing.Syntax;
 using TextEngine.Parsing.Text;
 
 namespace TextEngine.Parsing
@@ -13,15 +14,23 @@ namespace TextEngine.Parsing
         {
             get
             {
-                var first = GetChildren().First().Span;
-                var last = GetChildren().Last().Span;
+                var children = GetChildren();
+                if (children.Any())
+                {
+                    var first = children.First().Span;
+                    var last = children.Last().Span;
 
-                return TextSpan.FromBounds(first.Start, last.End);
+                    return TextSpan.FromBounds(first.Start, last.End);
+                }
+
+                return TextSpan.FromBounds(0, 0);
             }
         }
 
         public IEnumerable<SyntaxNode> GetChildren()
         {
+            var result = new List<SyntaxNode>();
+
             var properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var property in properties)
@@ -30,7 +39,7 @@ namespace TextEngine.Parsing
                 {
                     var child = (SyntaxNode)property.GetValue(this);
                     if (child != null)
-                        yield return child;
+                        result.Add(child);
                 }
                 else if (typeof(IEnumerable<SyntaxNode>).IsAssignableFrom(property.PropertyType))
                 {
@@ -38,10 +47,21 @@ namespace TextEngine.Parsing
                     foreach (var child in children)
                     {
                         if (child != null)
-                            yield return child;
+                            result.Add(child);
+                    }
+                }
+                else if (typeof(BlockNode).IsAssignableFrom(property.PropertyType))
+                {
+                    var children = (BlockNode)property.GetValue(this);
+                    foreach (var child in children.Children)
+                    {
+                        if (child != null)
+                            result.Add(child);
                     }
                 }
             }
+
+            return result;
         }
 
         public Token GetLastToken()
