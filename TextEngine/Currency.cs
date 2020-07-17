@@ -34,7 +34,16 @@ namespace TextEngine
         /// <summary>
         /// The name of the Currecny
         /// </summary>
-        public String Name { get; set; } 
+        public String Name 
+        {
+            get => name;
+            set
+            {
+                if (name == null)
+                    throw new ArgumentOutOfRangeException("Currency name cannot be null!");
+                name = value;
+            }
+        } 
 
         /// <summary>
         /// The relative value of the Currency
@@ -51,6 +60,7 @@ namespace TextEngine
         }
 
         private decimal value;
+        private string name;
 
         /// <summary>
         /// Construct a Currency

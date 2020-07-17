@@ -35,7 +35,11 @@ namespace TextEngine
         /// <summary>
         /// Character's Name
         /// </summary>
-        public string Name { get; set; }
+        public string Name 
+        {
+            get => name;
+            set => name = value ?? "Null";
+        }
 
         /// <summary>
         /// Characters Description
@@ -95,6 +99,7 @@ namespace TextEngine
 
         private int health;
         private int maxHealth;
+        private string name;
 
         /// <summary>
         /// Constructs a Character

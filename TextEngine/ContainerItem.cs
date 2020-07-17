@@ -34,7 +34,7 @@ namespace TextEngine
     class ContainerItem : Item
     {
         public bool Locked { get; set; }
-        public Inventory Inventory { get; }
+        public Inventory Inventory { get; } // Allow to be set?
 
         public ContainerItem(string name, string desc, bool visible, bool obtainable, int cap) : base(name, desc, visible, obtainable) { Inventory = new Inventory(cap); }
         public ContainerItem(string name, string desc, bool visible, bool obtainable) : base(name, desc, visible, obtainable) { Inventory = new Inventory(); }

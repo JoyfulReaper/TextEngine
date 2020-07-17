@@ -39,6 +39,9 @@ namespace TextEngine
         /// <param name="amount">The amount of the Currency to add</param>
         public void AddCurrency(Currency currency, int amount)
         {
+            if (currency == null)
+                throw new ArgumentOutOfRangeException("currency cannot be null");
+
             if (amount < 0)
                 throw new ArgumentOutOfRangeException("Amount must be > 0");
 
@@ -55,6 +58,9 @@ namespace TextEngine
         /// <param name="amount">The amount of Curreny to remove</param>
         public void RemoveCurrency(Currency currency, int amount)
         {
+            if (currency == null)
+                throw new ArgumentOutOfRangeException("currency cannot be null");
+
             if (amount < 0)
                 throw new ArgumentOutOfRangeException("Amount must be > 0");
 

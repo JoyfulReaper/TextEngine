@@ -177,10 +177,22 @@ namespace TextEngine
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// Add a message to the message queue
+        /// </summary>
+        /// <param name="message"></param>
         public static void AddMessage(string message) => messages.Enqueue(message);
 
+        /// <summary>
+        /// Check if there is a message avaliable
+        /// </summary>
+        /// <returns>true if there is a message in the queue, false otherwise</returns>
         public static bool HasMessage() => messages.Count > 0;
 
+        /// <summary>
+        /// Reterive the next message for the message queue
+        /// </summary>
+        /// <returns></returns>
         public static string GetMessage() => messages.Dequeue();
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////

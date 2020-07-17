@@ -38,7 +38,11 @@ namespace TextEngine
         public bool Visible { get; set; }
 
         /// <value>The name of the item</value>
-        public string Name { get; set; }
+        public string Name 
+        {
+            get => name;
+            set => name = value ?? "Null";
+        }
 
         /// <summary>
         /// The plural name of this item
@@ -47,6 +51,8 @@ namespace TextEngine
 
         /// <value>The description to be shown for the item</value>
         public string Description { get; set; }
+
+        private string name;
 
         /// <summary>
         /// Construct an Item
