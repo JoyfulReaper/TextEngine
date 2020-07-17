@@ -106,7 +106,6 @@ namespace TextEngine
 
             Console.WriteLine(i1.ToString());
 
-
             Console.WriteLine("----------------------------------------------------");
 
             GreedyWrap wrapper = new GreedyWrap(Console.WindowWidth);

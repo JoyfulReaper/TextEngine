@@ -24,20 +24,43 @@ SOFTWARE.
 
 using System;
 
-
 namespace TextEngine
 {
     /// <summary>
-    /// Represents the playable character
+    /// Represents a Currency
     /// </summary>
-    public class Player : Character
+    public class Currency
     {
         /// <summary>
-        /// Construct a playable character
+        /// The name of the Currecny
         /// </summary>
-        /// <param name="name">Player's name</param>
-        /// <param name="health">Staring health (any int > 0)</param>
-        /// <param name="maxHealth">Player's Maximum Health</param>
-        public Player(string name = "Player", int health = 100, int maxHealth = 100) : base(name, health, maxHealth) { }
+        public String Name { get; set; } 
+
+        /// <summary>
+        /// The relative value of the Currency
+        /// </summary>
+        public decimal Value
+        {
+            get => value;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Value must be >= 0");
+                this.value = value;
+            }
+        }
+
+        private decimal value;
+
+        /// <summary>
+        /// Construct a Currency
+        /// </summary>
+        /// <param name="name">The name of the Currency</param>
+        /// <param name="value">The relative value of the Currency</param>
+        public Currency(string name, decimal value)
+        {
+            this.Name = name;
+            this.value = value;
+        }
     }
 }

@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System;
 
 namespace TextEngine.MapItems
 {
@@ -37,9 +36,14 @@ namespace TextEngine.MapItems
         /// <param name="name">name of the wall</param>
         public Wall(string name = "wall") => Name = name;
 
-        public override void Enter(Character character, Direction going)
+        /// <summary>
+        /// Enter this Wall
+        /// </summary>
+        /// <param name="character">The Character Entering</param>
+        /// <param name="heading">The Direction the Charcter is heading</param>
+        public override void Enter(Character character, Direction heading)
         {
-            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(going) + ", but you just bump your head on the " + Name);
+            TextEngine.AddMessage("You try to go " + TextEngine.DirectionName(heading) + ", but you just bump your head on the " + Name);
         }
     }
 }

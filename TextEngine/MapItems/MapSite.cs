@@ -25,6 +25,9 @@ using System;
 
 namespace TextEngine.MapItems
 {
+    /// <summary>
+    /// Represents a "site" on the "map" can be a Room, Wall, Exit, Floor, Roof, etc which can be entered (or not)
+    /// </summary>
     public abstract class MapSite
     {
         /// <summary>
@@ -36,9 +39,13 @@ namespace TextEngine.MapItems
         /// Attempt to enter this MapSite
         /// </summary>
         /// <param name="character">The Character that is entering the MapSite</param>
-        /// <param name="going"></param>
-        public abstract void Enter(Character character, Direction going);
+        /// <param name="heading">The Direction the Character is heading</param>
+        public abstract void Enter(Character character, Direction heading);
 
+        /// <summary>
+        /// String representation of a MapSite
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"[{this.GetType().Name}] Name: {Name}";

@@ -26,6 +26,9 @@ using TextEngine.MapItems;
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents a Character
+    /// </summary>
     public abstract class Character
     {
         /// <summary>
@@ -38,12 +41,24 @@ namespace TextEngine
         /// </summary> 
         public string Description { get; set; }
 
-        public int MaxHealth { get; set; }
+        /// <summary>
+        /// The maximum health a character can have
+        /// </summary>
+        public int MaxHealth
+        {
+            get => maxHealth;
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("MaxHealth must be > 0");
+                maxHealth = value;
+            }
+        }
 
         /// <summary>
         /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
         /// </summary>
-        public virtual int Health 
+        public virtual int Health
         {
             get => health;
             set
@@ -60,21 +75,38 @@ namespace TextEngine
         /// <summary>
         /// The amount of local currence that the character has
         /// </summary>
-        public decimal Money { get; set; }
+        public Wallet CharacterWallet { get; set; }
 
+        /// <summary>
+        /// The room that the Character is in
+        /// </summary>
         public Room Location { get; set; }
 
+        /// <summary>
+        /// The Room that the Character was in previously
+        /// </summary>
         public Room PreviousLocation { get; private set; }
 
+        /// <summary>
+        /// The Character's Inventory
+        /// </summary>
         public Inventory Inventory { get;}
 
         private int health;
+        private int maxHealth;
 
-        public Character(string name = "Character", int health = 100, decimal money = 0)
+        /// <summary>
+        /// Constructs a Character
+        /// </summary>
+        /// <param name="name">The Character's name</param>
+        /// <param name="health">The Character's initial health</param>
+        /// <param name="maxHealth">The Character's maximum health</param>
+        public Character(string name = "Character", int health = 100, int maxHealth = 1000)
         {
             Name = name;
             Health = health;
-            Money = money;
+            MaxHealth = maxHealth;
+            CharacterWallet = new Wallet();
             Inventory = new Inventory();
         }
         /// <summary>
@@ -83,15 +115,23 @@ namespace TextEngine
         /// <returns>true if health > 0 other wise false;</returns>
         public virtual bool IsAlive() => Health > 0;
 
+        /// <summary>
+        /// Move the Character to another Room
+        /// </summary>
+        /// <param name="room">The Room to move the character to</param>
         public virtual void Move(Room room)
         {
             Location = room;
             PreviousLocation = Location;
         }
 
+        /// <summary>
+        /// A string representation of this Character
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return "Name: " + Name + " Health: " + Health + " Money: " + Money;
+            return $"Name: {Name}, Description {Description}, Health: {Health}, MaxHealth: {MaxHealth}";
         }
     }
 }

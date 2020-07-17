@@ -24,8 +24,14 @@ SOFTWARE.
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents a non-playable Character
+    /// </summary>
     public class NPC : Character
     {
+        /// <summary>
+        /// Determine if an NPC can be killed
+        /// </summary>
         private bool Killable { get; set; }
     }
 }

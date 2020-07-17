@@ -24,8 +24,6 @@ SOFTWARE.
 
 using TextEngine.MapItems;
 
-// This is probably poop, but its a start?
-
 namespace TextEngine
 {
     public static class CommandProccessor
@@ -49,14 +47,14 @@ namespace TextEngine
 
             if(commandSplit[0] == "GO")
             {
-                processGo(commandSplit);
+                ProcessGo(commandSplit);
                 return;
             }
 
             TextEngine.AddMessage("I don't understand :(");
         }
 
-        private static void processGo(string[] commandSplit)
+        private static void ProcessGo(string[] commandSplit)
         {
             if (commandSplit.Length == 1)
                 TextEngine.AddMessage("You need to give a direction! Like: Go North");

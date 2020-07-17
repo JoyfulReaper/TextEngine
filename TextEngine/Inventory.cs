@@ -28,6 +28,9 @@ using System.Linq;
 
 namespace TextEngine
 {
+    /// <summary>
+    /// Represents an Inventory of Items
+    /// </summary>
     public class Inventory
     {
         /// <summary>
@@ -53,9 +56,13 @@ namespace TextEngine
         /// <summary>
         /// A list containing all of the items in the inventory
         /// </summary>
-        private Dictionary<Item, int> items;
+        private readonly Dictionary<Item, int> items;
         private int capacity;
 
+        /// <summary>
+        /// Construct an Inventory
+        /// </summary>
+        /// <param name="capacity">initial capacity</param>
         public Inventory(int capacity = 1)
         {
             items = new Dictionary<Item, int>();
@@ -88,11 +95,22 @@ namespace TextEngine
             Count += quantity;
         }
 
+        /// <summary>
+        /// Add Item to Inventory
+        /// </summary>
+        /// <param name="item">The Item to add</param>
+        /// <param name="quantity">The quantity to add</param>
+        /// <returns>throws an exception for now :(</returns>
         public bool AddItem(String item, int quantity = 1)
         {
             throw new NotImplementedException("Later, when we can load items from files, I promise!");
         }
 
+        /// <summary>
+        /// Remove an Item from the Inventory
+        /// </summary>
+        /// <param name="item">The Item to remove</param>
+        /// <param name="quantity">The quantity to remove</param>
         public void RemoveItem(Item item, int quantity = 1)
         {
             if (!items.ContainsKey(item))
@@ -110,6 +128,11 @@ namespace TextEngine
                 throw new DebugException(item.Name + " quantity is 0, but it wasn't removed!");
         }
 
+        /// <summary>
+        /// Remove an item from the Inventory
+        /// </summary>
+        /// <param name="itemName">The name of the item to remove</param>
+        /// <param name="quantity">The quantity to remove</param>
         public void RemoveItem(String itemName, int quantity = 1)
         {
             if (!HasItem(itemName))
@@ -118,10 +141,25 @@ namespace TextEngine
             RemoveItem(GetItem(itemName));
         }
 
+        /// <summary>
+        /// Check if the Iventory contains an item
+        /// </summary>
+        /// <param name="item">The item to check for</param>
+        /// <returns>true if the item is contained, false if not</returns>
         public bool HasItem(Item item) => items.ContainsKey(item);
 
+        /// <summary>
+        /// Check if the Inventory contains an Item
+        /// </summary>
+        /// <param name="itemName">The Item to check for</param>
+        /// <returns>True if contained, false otherwise</returns>
         public bool HasItem(String itemName) => items.Keys.Any(key => key.Name == itemName);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">Item to get</param>
+        /// <returns>The Item</returns>
         public Item GetItem(string name)
         {
             if (!HasItem(name))
@@ -130,8 +168,18 @@ namespace TextEngine
             return items.Keys.First(key => key.Name == name);
         }
 
+        /// <summary>
+        /// Check how many of an Item are in the Inventory
+        /// </summary>
+        /// <param name="item">The item to check for</param>
+        /// <returns>The number of that item in the Inventory</returns>
         public int ItemQuantity(Item item) => items[item];
 
+        /// <summary>
+        /// Check how many of an Item are in the Inventory
+        /// </summary>
+        /// <param name="itemName">The name of the Item to check</param>
+        /// <returns>The number of that item in the Inventory</returns>
         public int ItemQuantity(string itemName)
         {
             if (!HasItem(itemName))
