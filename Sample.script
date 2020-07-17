@@ -39,7 +39,7 @@ verbs for direction
           "w" or "west" is left
            "e" or "east" is right
 
-start with
+on "start"
      dialog "intro"
      play "introsound"
 
