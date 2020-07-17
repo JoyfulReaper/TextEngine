@@ -16,6 +16,8 @@ character "leo" with
     and dialog "welcome dude"
 end
 
+tell "hello world"
+
 memory "name" equals "Tombo"
 on "setup" ask for "Please Tell me your name: " to "name"
 

@@ -108,9 +108,13 @@ namespace TextEngine.Parsing
             {
                 return ParsePropertyOnly<KeyDefinitionNode>("key");
             }
-            else if(MatchCurrentKeyword("include"))
+            else if (MatchCurrentKeyword("include"))
             {
                 return ParseInclude();
+            }
+            else if (MatchCurrentKeyword("tell"))
+            {
+                return ParseTell();
             }
             else if(MatchCurrentKeyword("memory"))
             {
@@ -127,6 +131,14 @@ namespace TextEngine.Parsing
             }
 
             return null;
+        }
+
+        private SyntaxNode ParseTell()
+        {
+            MatchKeyword("tell");
+            var message = MatchToken(SyntaxKind.String);
+
+            return new TellNode(message.Value.ToString());
         }
 
         private SyntaxNode ParseInclude()
