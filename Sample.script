@@ -24,6 +24,13 @@ on "setup"
     ask for "Please Tell me your name: " to "name"
 end
 
+on "exit" 
+    tell "goodbye"
+end
+
+
+
+
 
 money "Gulden" and "Silver" and "Bronce""
     100 "Silver" match "Gulden" and
@@ -48,8 +55,4 @@ verbs for direction
 on "start"
      dialog "intro"
      play "introsound"
-end
-
-on "exit" 
-    tell "goodbye"
 end
