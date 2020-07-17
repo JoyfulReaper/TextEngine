@@ -63,7 +63,10 @@ namespace TextEngine.Parsing
                     _kind = SyntaxKind.EOF;
                     break;
                 case '"':
-                    ReadString();
+                    ReadDoubleQuotedString();
+                    break;
+                case '\'':
+                    ReadSingleQuotedString();
                     break;
                 case '0':
                 case '1':
@@ -119,7 +122,47 @@ namespace TextEngine.Parsing
             _kind = SyntaxKind.Keyword;
         }
 
-        private void ReadString()
+        private void ReadSingleQuotedString()
+        {
+            // Skip the current quote
+            _position++;
+
+            var sb = new StringBuilder();
+            var done = false;
+
+            while (!done)
+            {
+                switch (Current)
+                {
+                    case '\0':
+                    case '\r':
+                    case '\n':
+                        done = true;
+                        break;
+                    case '"':
+                        if (Lookahead == '\'')
+                        {
+                            sb.Append(Current);
+                            _position += 2;
+                        }
+                        else
+                        {
+                            _position++;
+                            done = true;
+                        }
+                        break;
+                    default:
+                        sb.Append(Current);
+                        _position++;
+                        break;
+                }
+            }
+
+            _kind = SyntaxKind.String;
+            _value = sb.ToString();
+        }
+
+        private void ReadDoubleQuotedString()
         {
             // Skip the current quote
             _position++;
