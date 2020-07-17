@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Sample.script = Sample.script
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{C123DFB9-1EBF-4C04-A575-90CEECAB8710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Testing\Testing.csproj", "{C123DFB9-1EBF-4C04-A575-90CEECAB8710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextEngineTests", "TextEngineTests\TextEngineTests.csproj", "{B860BB23-DF6D-4AEF-97D2-00B941D0FFE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{C123DFB9-1EBF-4C04-A575-90CEECAB8710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C123DFB9-1EBF-4C04-A575-90CEECAB8710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C123DFB9-1EBF-4C04-A575-90CEECAB8710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B860BB23-DF6D-4AEF-97D2-00B941D0FFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B860BB23-DF6D-4AEF-97D2-00B941D0FFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B860BB23-DF6D-4AEF-97D2-00B941D0FFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B860BB23-DF6D-4AEF-97D2-00B941D0FFE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
