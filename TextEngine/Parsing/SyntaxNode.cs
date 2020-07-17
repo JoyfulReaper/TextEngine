@@ -86,7 +86,7 @@ namespace TextEngine.Parsing
 
             Console.Write(node.GetType().Name);
 
-            if (node is Token t && t.Value != null)
+            if (node is LiteralNode t && t.Value != null)
             {
                 Console.Write(" ");
                 Console.Write(t.Value);
