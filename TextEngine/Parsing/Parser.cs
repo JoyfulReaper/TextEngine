@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
-using System.Text.RegularExpressions;
 using TextEngine.Parsing.Syntax;
 using TextEngine.Parsing.Text;
 

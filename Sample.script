@@ -26,7 +26,6 @@ on "setup"
 end
 
 
-
 money "Gulden" and "Silver" and "Bronce""
     100 "Silver" match "Gulden" and
     10 "Bronce" match "Silver"
@@ -50,5 +49,8 @@ verbs for direction
 on "start"
      dialog "intro"
      play "introsound"
+end
 
-on "exit" say "goodbye"
+on "exit" 
+    say "goodbye"
+end
