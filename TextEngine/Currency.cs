@@ -29,7 +29,7 @@ namespace TextEngine
     /// <summary>
     /// Represents a Currency
     /// </summary>
-    class Currency
+    public class Currency
     {
         /// <summary>
         /// The name of the Currecny

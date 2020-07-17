@@ -59,7 +59,7 @@ namespace TextEngine
         /// <summary>
         /// Health can be any vaild int > 0. I would suggest using 0 - 100. 0 is dead
         /// </summary>
-        public virtual int Health 
+        public virtual int Health
         {
             get => health;
             set
@@ -76,7 +76,7 @@ namespace TextEngine
         /// <summary>
         /// The amount of local currence that the character has
         /// </summary>
-        public decimal Money { get; set; }
+        public Wallet CharacterWallet { get; set; }
 
         /// <summary>
         /// The room that the Character is in
@@ -101,12 +101,13 @@ namespace TextEngine
         /// </summary>
         /// <param name="name">The Character's name</param>
         /// <param name="health">The Character's initial health</param>
-        /// <param name="money">The Character's initial money</param>
-        public Character(string name = "Character", int health = 100, decimal money = 0)
+        /// <param name="maxHealth">The Character's maximum health</param>
+        public Character(string name = "Character", int health = 100, int maxHealth = 1000)
         {
             Name = name;
             Health = health;
-            Money = money;
+            MaxHealth = maxHealth;
+            CharacterWallet = new Wallet();
             Inventory = new Inventory();
         }
         /// <summary>
@@ -131,7 +132,7 @@ namespace TextEngine
         /// <returns></returns>
         public override string ToString()
         {
-            return "Name: " + Name + " Health: " + Health + " Money: " + Money;
+            return $"Name: {Name}, Description {Description}, Health: {Health}, MaxHealth: {MaxHealth}";
         }
     }
 }

@@ -28,7 +28,7 @@ using TextEngine.MapItems;
 
 namespace TextEngine
 {
-    class Wallet
+    public class Wallet
     {
         private Dictionary<Currency, int> wallet = new Dictionary<Currency, int>();
 

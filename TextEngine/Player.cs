@@ -37,7 +37,7 @@ namespace TextEngine
         /// </summary>
         /// <param name="name">Player's name</param>
         /// <param name="health">Staring health (any int > 0)</param>
-        /// <param name="money">Players starting money. Any decimal, can be negative</param>
-        public Player(string name = "Player", int health = 100, decimal money = 0) : base(name, health, money) { }
+        /// <param name="maxHealth">Player's Maximum Health</param>
+        public Player(string name = "Player", int health = 100, int maxHealth = 100) : base(name, health, maxHealth) { }
     }
 }
