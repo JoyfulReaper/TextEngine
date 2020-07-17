@@ -95,6 +95,7 @@ namespace TextEngine.Parsing
 
         private SyntaxNode ParseMember()
         {
+            //ToDo: refactor ParseMember to a Dictionary to reduce branches
             if(MatchCurrentKeyword("character"))
             {
                 return ParsePropertyOnly<CharacterDefinitionNode>("character");
@@ -123,8 +124,23 @@ namespace TextEngine.Parsing
             {
                 return ParseEventSubscription();
             }
+            else if(MatchCurrentKeyword("ask"))
+            {
+                return ParseAskFor();
+            }
 
             return null;
+        }
+
+        private SyntaxNode ParseAskFor()
+        {
+            var askkeyword = MatchKeyword("ask");
+            var forKeyword = MatchKeyword("for");
+            var message = MatchToken(SyntaxKind.String).Value.ToString();
+            var toKeyword = MatchKeyword("to");
+            var slotname = MatchToken(SyntaxKind.String).Value.ToString();
+
+            return new AskForInputNode(message, slotname);
         }
 
         private SyntaxNode ParseEventSubscription()

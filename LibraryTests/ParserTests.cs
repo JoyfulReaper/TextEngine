@@ -48,9 +48,17 @@ namespace LibraryTests
         }
 
         [TestMethod]
-        public void Parse_EventSubscription_Empty_Should_Pass()
+        public void Parse_EventSubscription_Should_Pass()
         {
             var src = "on \"start\" tell \"hello world\" end";
+            var parser = new Parser();
+            var result = parser.Parse(src);
+        }
+
+        [TestMethod]
+        public void Parse_AskFor_Should_Pass()
+        {
+            var src = "ask for \"name?\" to \"name\"";
             var parser = new Parser();
             var result = parser.Parse(src);
         }
