@@ -40,7 +40,7 @@ namespace TextEngine
         public void AddCurrency(Currency currency, int amount)
         {
             if (currency == null)
-                throw new ArgumentOutOfRangeException("currency cannot be null");
+                throw new NullReferenceException("currency cannot be null");
 
             if (amount < 0)
                 throw new ArgumentOutOfRangeException("Amount must be > 0");
@@ -59,7 +59,7 @@ namespace TextEngine
         public void RemoveCurrency(Currency currency, int amount)
         {
             if (currency == null)
-                throw new ArgumentOutOfRangeException("currency cannot be null");
+                throw new NullReferenceException("currency cannot be null");
 
             if (amount < 0)
                 throw new ArgumentOutOfRangeException("Amount must be > 0");

@@ -40,7 +40,7 @@ namespace TextEngine
             set
             {
                 if (name == null)
-                    throw new ArgumentOutOfRangeException("Currency name cannot be null!");
+                    throw new NullReferenceException("Currency name cannot be null!");
                 name = value;
             }
         } 
