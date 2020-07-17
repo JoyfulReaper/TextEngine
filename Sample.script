@@ -23,14 +23,19 @@ memory "name" equals "Tombo"
 
 on "setup" 
     ask for "Please Tell me your name: " to "name"
+end
+
+
 
 money "Gulden" and "Silver" and "Bronce""
     100 "Silver" match "Gulden" and
     10 "Bronce" match "Silver"
 
-
-
 openable "Chest" open with "chest_in_castle"
+    on "use"
+        tell "Thanks for opening"
+    end
+end
 
 
 dialog "welcome dude" based on "intro"

@@ -118,19 +118,51 @@ namespace TextEngine.Parsing
             }
             else if(MatchCurrentKeyword("memory"))
             {
-                var keyword = MatchKeyword("memory");
-                var slotname = MatchToken(SyntaxKind.String);
-                object initialvalue = null;
-                if(MatchCurrentKeyword("equals"))
-                {
-                    var equalsToken = MatchKeyword("equals");
-                    initialvalue = MatchToken(SyntaxKind.String).Value; // replace with ParseValue()
-                }
-
-                return new MemorySlotDefinition(slotname.Value.ToString(), initialvalue);
+                return ParseMemorySlot();
+            }
+            else if(MatchCurrentKeyword("on"))
+            {
+                return ParseEventSubscription();
             }
 
             return null;
+        }
+
+        private SyntaxNode ParseEventSubscription()
+        {
+            var keyword = MatchKeyword("on");
+            var name = MatchToken(SyntaxKind.String);
+            var body = (BlockNode)ParseProcedureBlock();
+
+            return new EventSubscriptionNode(name.Value.ToString(), body);
+        }
+
+        private BlockNode ParseProcedureBlock()
+        {
+            var members = new List<SyntaxNode>();
+
+            while(Current.Kind != SyntaxKind.EndToken)
+            {
+                members.Add(ParseMember());
+            }
+
+            MatchToken(SyntaxKind.EndToken);
+
+            return new BlockNode(members);
+        }
+
+        private SyntaxNode ParseMemorySlot()
+        {
+            var keyword = MatchKeyword("memory");
+            var slotname = MatchToken(SyntaxKind.String);
+            object initialvalue = null;
+            if (MatchCurrentKeyword("equals"))
+            {
+                var equalsToken = MatchKeyword("equals");
+                initialvalue = MatchToken(SyntaxKind.String).Value; // replace with ParseValue()
+            }
+
+            return new MemorySlotDefinition(slotname.Value.ToString(), initialvalue);
         }
 
         private SyntaxNode ParseTell()
